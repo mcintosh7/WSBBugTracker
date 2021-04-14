@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect/">
+<head>
+
+</head>
+<body>
+<section class="container">
+    <div layout:fragment="content">
+        Spring Security Demo
+
+
+        <form th:action="@{/logout}" method="post" class="form-inline">
+            <input type="submit" th:value="#{login.logout}" class="btn btn-secondary"/>
+        </form>
+    </div>
+
+</section>
+
+</body>
+</html>
