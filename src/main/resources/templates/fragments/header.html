@@ -14,28 +14,49 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Active</a>
-    </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-        </ul>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    </li>
-</ul>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="header">
+        <a class="navbar-brand" href="#">BugTracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Zgłoszenia</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Projekty</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/people/}">Użytkownicy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contact}">Moje konto</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+    </span>
+        </div>
+    </nav>
+</div>
+
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="headerLogin">
+        <a class="navbar-brand" href="#">BugTracker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarLoginText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Strona testowa</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+    </span>
+        </div>
+    </nav>
 </div>
 </body>
 </html>
