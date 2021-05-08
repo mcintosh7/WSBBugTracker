@@ -10,6 +10,9 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("isAdmin", true);
+        model.addAttribute("message","błąd taki");
+        model.addAttribute("type","danger");
+
         return "index";
     }
 

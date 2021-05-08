@@ -17,13 +17,13 @@
 </head>
 <body>
 <!--/* Standard layout can be mixed with Layout Dialect */-->
-<div th:replace="fragments/header.html :: header">
+<div th:replace="fragments/header :: header">
     Header
 </div>
 
 <div class="container">
 
-    <div th:replace="fragments/alert :: alert (type, message)"></div>
+    <div th:insert="fragments/alert :: alert (type=${type}, message=${message})">...</div>
 
     <div layout:fragment="content">
         <!-- ============================================================================ -->

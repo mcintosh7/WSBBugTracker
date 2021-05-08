@@ -2,8 +2,11 @@ package com.example.projekt_dyplomowy.persons;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
@@ -35,9 +38,14 @@ public class PersonController {
 
     @PostMapping(value = "/save")
     @Secured("ROLE_CREATE_USER")
-    ModelAndView createNewUser(@ModelAttribute Person person) {
+    ModelAndView createNewUser(@ModelAttribute @Valid Person person, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
+        if (bindingResult.hasErrors()) {
+          modelAndView.setViewName("people/create");
+          modelAndView.addObject(person);
+          return modelAndView;
+        }
         personService.savePerson(person);
         modelAndView.setViewName("redirect:/people/");
 

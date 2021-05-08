@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -19,12 +20,15 @@ public class Person {
     @GeneratedValue
     Long id;
 
+    @NotEmpty
     @Column(nullable = false, unique = true, length = 50)
     String username;
 
+    @NotEmpty
     @Column(nullable = false)
     String name;
 
+    @NotEmpty
     @Column(nullable = false)
     String password;
 

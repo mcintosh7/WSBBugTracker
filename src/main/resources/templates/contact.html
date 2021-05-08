@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en"
+      layout:decorate="~{layout}"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect/">
 <head>
     <meta charset="UTF-8">
     <title>Strona o autorze</title>
 </head>
 <body>
-O mnie
-Arkadiusz Chmal
+<section class="container">
+    <div layout:fragment="content">
+        <h1>
+            O mnie
+        </h1>
+    </div>
+</section>
 </body>
 </html>

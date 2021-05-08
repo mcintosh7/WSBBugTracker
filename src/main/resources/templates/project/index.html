@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      layout:decorate="~{layout}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect/">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Projekty</title>
 </head>
 <body>
-Projekty
-
+<section class="container">
+    <div layout:fragment="content">
+        <h1>
+            Strona o projektach
+        </h1>
+    </div>
+</section>
 </body>
 </html>

@@ -39,5 +39,4 @@ public class Issue {
     @JoinColumn(name = "project_id", nullable = false)
     Project project;
 
-
 }

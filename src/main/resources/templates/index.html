@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}"
+      lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect/">
 <head>
@@ -10,6 +11,7 @@
     <div layout:fragment="content">
         Spring Security Demo
 
+    <hr/>
 
         <form th:action="@{/logout}" method="post" class="form-inline">
             <input type="submit" th:value="#{login.logout}" class="btn btn-secondary"/>
@@ -17,6 +19,5 @@
     </div>
 
 </section>
-
 </body>
 </html>

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      layout:decorate="~{layout}"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,7 +23,8 @@
 <section class="container">
     <h3 th:text="#{nav.issues}" class="pb-3"></h3>
 
-    <div th:each="issue : ${issues}">
+    <div layout:fragment="content"
+         th:each="issue : ${issues}">
         <span th:text="${issue.id}"></span>
         <span th:text="${issue.title}"></span>
     </div>

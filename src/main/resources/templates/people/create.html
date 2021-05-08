@@ -33,7 +33,14 @@
                            type="text"
                            th:field="*{username}"
                            placeholder="Username"
-                           class="form-control"/>
+
+                           th:class="'form-control' + ${#fields.hasErrors('username')? 'is-invalid' : ''}"/>
+
+                    <small class="text-danger"
+                           th:if="${#fields.hasErrors('username')}"
+                           th:errors="*{'username'}">
+                    </small>
+
                 </div>
             </div>
 
