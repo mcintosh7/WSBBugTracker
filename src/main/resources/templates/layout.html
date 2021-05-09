@@ -23,7 +23,7 @@
 
 <div class="container">
 
-    <div th:insert="fragments/alert :: alert (type=${type}, message=${message})">...</div>
+    <div th:insert="fragments/alert :: alert (type, message)"></div>
 
     <div layout:fragment="content">
         <!-- ============================================================================ -->
