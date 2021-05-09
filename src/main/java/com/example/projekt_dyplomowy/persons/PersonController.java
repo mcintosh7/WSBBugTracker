@@ -14,10 +14,12 @@ public class PersonController {
 
     private final PersonService personService;
     private final PersonRepository personRepository;
+    private final AuthorityRepository authorityRepository;
 
-    public PersonController(PersonService personService, PersonRepository personRepository) {
+    public PersonController(PersonService personService, PersonRepository personRepository, AuthorityRepository authorityRepository) {
         this.personService = personService;
         this.personRepository = personRepository;
+        this.authorityRepository = authorityRepository;
     }
 
     @GetMapping("/")
@@ -38,17 +40,31 @@ public class PersonController {
 
     @PostMapping(value = "/save")
     @Secured("ROLE_CREATE_USER")
-    ModelAndView createNewUser(@ModelAttribute @Valid Person person, BindingResult bindingResult) {
+    ModelAndView save(@ModelAttribute @Valid Person person, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
           modelAndView.setViewName("people/create");
+          modelAndView.addObject("authorities", authorityRepository.findAll());
           modelAndView.addObject(person);
           return modelAndView;
         }
         personService.savePerson(person);
         modelAndView.setViewName("redirect:/people/");
 
+        return modelAndView;
+    }
+
+    @GetMapping("/edit/{id}")
+    @Secured("ROLE_CREATE_USER")
+    ModelAndView edit(@PathVariable Long id) {
+        Person person = personRepository.findById(id).orElse(null);
+        if (person == null) {
+            return index();
+        }
+        ModelAndView modelAndView = new ModelAndView("people/create");
+        modelAndView.addObject("authorities", authorityRepository.findAll());
+        modelAndView.addObject("person", person);
         return modelAndView;
     }
 }
