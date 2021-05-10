@@ -26,17 +26,14 @@ public class Person {
     Long id;
 
     @NotEmpty
-    @Size(min = 5, max = 100)
     @Column(nullable = false, unique = true, length = 50)
     String username;
 
     @NotEmpty
-    @Size(min = 5, max = 100)
     @Column(nullable = false)
     String name;
 
     @NotEmpty
-    @Size(min = 6)
     @Column(nullable = false)
     String password;
 

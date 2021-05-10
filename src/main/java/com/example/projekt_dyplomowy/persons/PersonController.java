@@ -34,6 +34,7 @@ public class PersonController {
     @Secured("ROLE_CREATE_USER")
     ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView("people/create");
+        modelAndView.addObject("authorities", authorityRepository.findAll());
         modelAndView.addObject("person", new Person());
         return modelAndView;
     }
@@ -64,7 +65,7 @@ public class PersonController {
         }
         ModelAndView modelAndView = new ModelAndView("people/create");
         modelAndView.addObject("authorities", authorityRepository.findAll());
-        modelAndView.addObject("person", person);
+        modelAndView.addObject(person);
         return modelAndView;
     }
 }
