@@ -19,7 +19,7 @@
           type="text/css"/>
 </head>
 <body>
-
+etete
 <section class="container">
     <h3 th:text="#{nav.issues}" class="pb-3"></h3>
 
@@ -27,6 +27,12 @@
          th:each="issue : ${issues}">
         <span th:text="${issue.id}"></span>
         <span th:text="${issue.title}"></span>
+    </div>
+
+    <div>
+        <a th:href="@{'/issue/create'}"
+           th:text="Utwórz zgłoszenie"
+           class="btn btn-primary"></a>
     </div>
 </section>
 

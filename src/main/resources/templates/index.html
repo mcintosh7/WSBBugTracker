@@ -7,17 +7,18 @@
 
 </head>
 <body>
-<section class="container">
-    <div layout:fragment="content">
-        Spring Security Demo
+<div layout:fragment="content">
+    <section class="container">
+        Spring Security Demo!!!
 
-    <hr/>
+        <hr/>
 
         <form th:action="@{/logout}" method="post" class="form-inline">
             <input type="submit" th:value="#{login.logout}" class="btn btn-secondary"/>
         </form>
-    </div>
+    </section>
+</div>
 
-</section>
+
 </body>
 </html>

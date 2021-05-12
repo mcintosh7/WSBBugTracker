@@ -17,6 +17,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Issue {
 
+
+    public Issue(Long id, String title, String content, State state) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.state = state;
+    }
+
     @Id
     @GeneratedValue
     Long id;
