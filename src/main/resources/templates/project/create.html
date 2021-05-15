@@ -27,6 +27,8 @@
         </h1>
 
         <form th:action="@{/project/save}" th:object="${projects}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+
             <div class="row">
                 <div class="mb-3">
                     <div>
@@ -37,7 +39,13 @@
                                type="text"
                                th:field="*{name}"
                                placeholder="Nazwa"
-                               class="form-control"/>
+                               class="form-control"
+                               th:class="'form-control ' + ${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
+
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}"></small>
+
                     </div>
                 </div>
 

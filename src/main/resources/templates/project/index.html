@@ -39,7 +39,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nazwa projektu</th>
-                <th>Usuwanie</th>
+                <th>Usuń</th>
             </tr>
             </thead>
             <tr th:each="project : ${projects}" th:onclick="'javascript:rowClicked(\'' + ${project.id} + '\');'"
@@ -55,10 +55,6 @@
             <a th:href="@{'/project/create/'}"
                th:text="Dodaj"
                class="btn btn-primary"></a>
-
-            <a th:href="@{'/'}"
-               th:text="Anuluj"
-               class="btn btn-secondary"></a>
         </div>
 
     </div>
