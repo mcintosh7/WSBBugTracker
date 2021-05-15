@@ -28,36 +28,36 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-    <h1>
-        Projekty
-    </h1>
+        <h1>
+            Projekty
+        </h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Imię i nazwisko
-            </th>
-            <th>
-                Nazwa użytkownika
-            </th>
-        </tr>
-        </thead>
-        <tr th:each="person : ${people}" th:onclick="'javascript:rowClicked(\'' + ${person.id} + '\');'" style="cursor: pointer">
-            <td th:text="${person.id}"></td>
-            <td th:text="${person.name}"></td>
-            <td th:text="${person.username}"></td>
-        </tr>
-    </table>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Imię i nazwisko
+                </th>
+                <th>
+                    Nazwa użytkownika
+                </th>
+            </tr>
+            </thead>
+            <tr th:each="person : ${people}" th:onclick="'javascript:rowClicked(\'' + ${person.id} + '\');'" style="cursor: pointer">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.name}"></td>
+                <td th:text="${person.username}"></td>
+            </tr>
+        </table>
 
-    <div>
-        <a th:href="@{'/people/create/'}"
-           th:text="Dodaj"
-           class="btn btn-primary"></a>
-    </div>
+        <div>
+            <a th:href="@{'/people/create/'}"
+               th:text="Dodaj"
+               class="btn btn-primary"></a>
+        </div>
     </div>
 </section>
 </body>

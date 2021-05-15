@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en"
-      layout:decorate="~{layout}"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect">
 <head>
@@ -20,55 +19,48 @@
 
     <script>
         function rowClicked(value) {
-            location.href = "/people/edit/" + value;
+            location.href = "/project/edit/" + value;
         }
     </script>
 
 </head>
 <body>
 <section class="container">
-    <div layout:fragment="content">
+    <div>
 
         <h1>
             Projekty
         </h1>
 
-        <table class="table">
+        <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Nazwa projektu
+                </th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+            <tr th:each="project : ${projects}" th:onclick="'javascript:rowClicked(\'' + ${project.id} + '\');'"
+                style="cursor: pointer">
+                <td th:text="${project.id}"></td>
+                <td th:text="${project.name}"></td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            </tbody>
+
         </table>
 
         <div>
             <a th:href="@{'/project/create/'}"
-               th:text="Dodaj projekt"
+               th:text="Dodaj"
                class="btn btn-primary"></a>
+
+            <a th:href="@{'/'}"
+               th:text="Anuluj"
+               class="btn btn-secondary"></a>
         </div>
+
     </div>
 </section>
 </body>

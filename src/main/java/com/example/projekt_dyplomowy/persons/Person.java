@@ -37,7 +37,6 @@ public class Person {
     @Column(nullable = false)
     String password;
 
-
     @Transient
     String repeatedPassword;
 

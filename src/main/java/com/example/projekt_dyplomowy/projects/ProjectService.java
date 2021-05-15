@@ -13,7 +13,10 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    List<Project> findAllProjects() {
-        return projectRepository.findAll();
+    public void deleteProject(Project project){
+
+        project.setEnabled(false);
+        projectRepository.save(project);
+
     }
 }
