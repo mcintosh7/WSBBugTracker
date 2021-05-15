@@ -29,21 +29,15 @@
 <section class="container">
     <div layout:fragment="content">
         <h1>
-            Projekty
+            Użytkownicy
         </h1>
 
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Imię i nazwisko
-                </th>
-                <th>
-                    Nazwa użytkownika
-                </th>
+                <th>Id</th>
+                <th>Imię i nazwisko</th>
+                <th>Nazwa użytkownika</th>
             </tr>
             </thead>
             <tr th:each="person : ${people}" th:onclick="'javascript:rowClicked(\'' + ${person.id} + '\');'" style="cursor: pointer">

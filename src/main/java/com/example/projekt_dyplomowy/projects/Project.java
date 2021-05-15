@@ -24,10 +24,9 @@ public class Project {
 
     @Column(nullable = false)
     @ColumnDefault(value = "true")
-    Boolean enabled;
+    Boolean enabled = true;
 
-    public Project(String name, Boolean enabled) {
+    public Project(String name) {
         this.name = name;
-        this.enabled = enabled;
     }
 }

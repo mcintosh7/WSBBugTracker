@@ -13,10 +13,12 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    public void deleteProject(Project project){
-
+    protected void deleteProject(Project project){
         project.setEnabled(false);
         projectRepository.save(project);
+    }
 
+    protected void saveProject(Project project) {
+        projectRepository.save(project);
     }
 }

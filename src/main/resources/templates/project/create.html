@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}"
+      xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect"
       lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,34 +19,38 @@
             crossorigin="anonymous"></script>
 
 </head>
+<body>
 <section class="container">
-    <h1>
-        Stwórz nowy projekt
-    </h1>
+    <div layout:fragment="content">
+        <h1>
+            Stwórz nowy projekt
+        </h1>
 
-    <form th:action="@{/project/save}" th:object="${projects}" method="post">
-        <div class="row">
-            <div class="mb-3">
-                <div>
-                    <label for="name">Nazwa</label>
+        <form th:action="@{/project/save}" th:object="${projects}" method="post">
+            <div class="row">
+                <div class="mb-3">
+                    <div>
+                        <label for="name">Nazwa</label>
+                    </div>
+                    <div>
+                        <input id="name"
+                               type="text"
+                               th:field="*{name}"
+                               placeholder="Nazwa"
+                               class="form-control"/>
+                    </div>
                 </div>
-                <div>
-                    <input id="name"
-                           type="text"
-                           th:field="*{name}"
-                           placeholder="Nazwa"
-                           class="form-control"/>
-                </div>
+
             </div>
 
-        </div>
+            <div>
+                <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
 
-        <div>
-            <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
+                <a th:href="@{/project/}" class="btn btn-secondary" th:text="Anuluj"></a>
 
-            <a th:href="@{/project/}" class="btn btn-secondary" th:text="Anuluj"></a>
-        </div>
-    </form>
+            </div>
+        </form>
+    </div>
 </section>
 </body>
 </html>

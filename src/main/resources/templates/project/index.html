@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
+      layout:decorate="~{layout}"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect">
 <head>
@@ -26,6 +27,7 @@
 </head>
 <body>
 <section class="container">
+    <div layout:fragment="content">
     <div>
 
         <h1>
@@ -35,18 +37,16 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Nazwa projektu
-                </th>
+                <th>Id</th>
+                <th>Nazwa projektu</th>
+                <th>Usuwanie</th>
             </tr>
             </thead>
             <tr th:each="project : ${projects}" th:onclick="'javascript:rowClicked(\'' + ${project.id} + '\');'"
                 style="cursor: pointer">
                 <td th:text="${project.id}"></td>
                 <td th:text="${project.name}"></td>
+                <td><a th:href="@{/project/delete/{id}(id=${project.id})}">&times;</a></td>
             </tr>
 
         </table>
@@ -61,6 +61,7 @@
                class="btn btn-secondary"></a>
         </div>
 
+    </div>
     </div>
 </section>
 </body>

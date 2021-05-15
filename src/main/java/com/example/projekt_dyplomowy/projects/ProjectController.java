@@ -38,9 +38,9 @@ public class ProjectController {
 
     @PostMapping(value = "/save")
     @Secured("ROLE_USERS_TAB")
-    ModelAndView saveProject(@Valid @ModelAttribute Project project) {
+    ModelAndView save(@ModelAttribute @Valid Project project) {
         ModelAndView modelAndView = new ModelAndView();
-        projectRepository.save(project);
+        projectService.saveProject(project);
         modelAndView.setViewName("redirect:/project/");
         return modelAndView;
     }
@@ -54,7 +54,19 @@ public class ProjectController {
         }
         ModelAndView modelAndView = new ModelAndView("project/create");
         modelAndView.addObject("projects", projectRepository.findById(id));
-        modelAndView.addObject(project);
+        return modelAndView;
+    }
+
+    @GetMapping("/delete/{id}")
+    @Secured("ROLE_USERS_TAB")
+    ModelAndView deleteUser(@PathVariable ("id") Long id) {
+        Project project = projectRepository.findById(id).orElse(null);
+        if (project == null) {
+            return index();
+        }
+        ModelAndView modelAndView = new ModelAndView("project/create");
+        projectService.deleteProject(project);
+        modelAndView.setViewName("redirect:/project/");
         return modelAndView;
     }
 }
