@@ -1,16 +1,13 @@
 package com.example.projekt_dyplomowy.issues;
 
-import com.example.projekt_dyplomowy.persons.AuthorityRepository;
+import com.example.projekt_dyplomowy.persons.PersonRepository;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/issue")
@@ -18,10 +15,12 @@ public class IssueController {
 
     final IssueRepository issueRepository;
     final IssueService issueService;
+    final PersonRepository personRepository;
 
-    public IssueController(IssueRepository issueRepository, IssueService issueService) {
+    public IssueController(IssueRepository issueRepository, IssueService issueService, PersonRepository personRepository) {
         this.issueRepository = issueRepository;
         this.issueService = issueService;
+        this.personRepository = personRepository;
     }
 
     @GetMapping("/")
@@ -37,6 +36,7 @@ public class IssueController {
     ModelAndView create(){
         ModelAndView modelAndView = new ModelAndView("issue/create");
         modelAndView.addObject("issues", new Issue());
+        modelAndView.addObject("people", personRepository.findAll());
         return modelAndView;
     }
 

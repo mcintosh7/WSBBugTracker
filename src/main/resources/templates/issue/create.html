@@ -40,13 +40,7 @@
                                type="text"
                                th:field="*{title}"
                                placeholder="Nazwa"
-                               class="form-control"
-                               th:class="'form-control ' + ${#fields.hasErrors('title') ? 'is-invalid' : ''}"/>
-
-                        <small class="text-danger"
-                               th:if="${#fields.hasErrors('title')}"
-                               th:errors="*{title}"></small>
-
+                               class="form-control"/>
                     </div>
                 </div>
 
@@ -55,17 +49,17 @@
                         <label for="assignee">Osoba przydzielona</label>
                     </div>
                     <div>
-                        <input id="assignee"
-                               type="text"
-                               th:field="*{name}"
-                               placeholder="Osoba przydzielona"
-                               class="form-control"
-                               th:class="'form-control ' + ${#fields.hasErrors('assignee') ? 'is-invalid' : ''}"/>
-
+                        <select id="assignee"
+                                th:field="*{assignee}"
+                                class="form-control">
+                            <option th:value="${null}"
+                                    placeholder="Przydzielony"></option>
+                            <option th:each="person : ${people}"
+                                    th:text="${person.name}"></option>
+                        </select>
                         <small class="text-danger"
-                               th:if="${#fields.hasErrors('name')}"
-                               th:errors="*{name}"></small>
-
+                               th:if="${#fields.hasErrors('assignee')}"
+                               th:errors="*{assignee}"></small>
                     </div>
                 </div>
 
@@ -78,12 +72,7 @@
                                type="text"
                                th:field="*{content}"
                                placeholder="Nazwa"
-                               class="form-control"
-                               th:class="'form-control ' + ${#fields.hasErrors('content') ? 'is-invalid' : ''}"/>
-
-                        <small class="text-danger"
-                               th:if="${#fields.hasErrors('content')}"
-                               th:errors="*{content}"></small>
+                               class="form-control"/>
 
                     </div>
                 </div>
@@ -97,12 +86,7 @@
                                type="text"
                                th:field="*{project}"
                                placeholder="Projekt"
-                               class="form-control"
-                               th:class="'form-control ' + ${#fields.hasErrors('project') ? 'is-invalid' : ''}"/>
-
-                        <small class="text-danger"
-                               th:if="${#fields.hasErrors('project')}"
-                               th:errors="*{project}"></small>
+                               class="form-control"/>
 
                     </div>
                 </div>
