@@ -18,10 +18,12 @@ import javax.persistence.*;
 public class Issue {
 
 
-    public Issue(String title, String content, State state) {
+    public Issue(String title, String content, State state, Person name, Project project) {
         this.title = title;
         this.content = content;
         this.state = state;
+        this.assignee = name;
+        this.project = project;
     }
 
     @Id
@@ -39,7 +41,7 @@ public class Issue {
     State state = State.PENDING;
 
     @ManyToOne()
-    @JoinColumn(name = "assignee_id")
+    @JoinColumn(name = "assignee_id", nullable = false)
     Person assignee;
 
     @ManyToOne(optional = false)

@@ -50,6 +50,63 @@
                     </div>
                 </div>
 
+                <div class="mb-3">
+                    <div>
+                        <label for="assignee">Osoba przydzielona</label>
+                    </div>
+                    <div>
+                        <input id="assignee"
+                               type="text"
+                               th:field="*{name}"
+                               placeholder="Osoba przydzielona"
+                               class="form-control"
+                               th:class="'form-control ' + ${#fields.hasErrors('assignee') ? 'is-invalid' : ''}"/>
+
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}"></small>
+
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div>
+                        <label for="content">Opis zgłoszenia</label>
+                    </div>
+                    <div>
+                        <input id="content"
+                               type="text"
+                               th:field="*{content}"
+                               placeholder="Nazwa"
+                               class="form-control"
+                               th:class="'form-control ' + ${#fields.hasErrors('content') ? 'is-invalid' : ''}"/>
+
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('content')}"
+                               th:errors="*{content}"></small>
+
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div>
+                        <label for="assigneeProject">Projekt</label>
+                    </div>
+                    <div>
+                        <input id="assigneeProject"
+                               type="text"
+                               th:field="*{project}"
+                               placeholder="Projekt"
+                               class="form-control"
+                               th:class="'form-control ' + ${#fields.hasErrors('project') ? 'is-invalid' : ''}"/>
+
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('project')}"
+                               th:errors="*{project}"></small>
+
+                    </div>
+                </div>
+
             </div>
 
             <div>

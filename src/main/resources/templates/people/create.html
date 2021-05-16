@@ -38,7 +38,7 @@
                         <input id="username"
                                type="text"
                                th:field="*{username}"
-                               placeholder="Username"
+                               placeholder="Login użytkownika"
                                th:class="'form-control ' + ${#fields.hasErrors('username') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -97,6 +97,24 @@
                                th:errors="*{repeatedPassword}"></small>
                     </div>
                 </div>
+
+                <div class="mb-3">
+                    <div>
+                        <label for="email">Email</label>
+                    </div>
+                    <div>
+                        <input id="email"
+                               type="text"
+                               th:field="*{email}"
+                               placeholder="Email"
+                               th:class="'form-control ' + ${#fields.hasErrors('email') ? 'is-invalid' : ''}"/>
+
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('email')}"
+                               th:errors="*{email}"></small>
+                    </div>
+                </div>
+
             </div>
 
             <div class="mb-3">

@@ -1,8 +1,10 @@
 package com.example.projekt_dyplomowy.persons;
 
 import com.example.projekt_dyplomowy.enums.State;
+import com.example.projekt_dyplomowy.issues.Issue;
 import com.example.projekt_dyplomowy.validators.UniqueUsername;
 import com.example.projekt_dyplomowy.validators.ValidPasswords;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,14 +46,20 @@ public class Person {
     @ColumnDefault(value = "true")
     Boolean enabled = true;
 
-    @Enumerated(EnumType.STRING)
-    State state = State.PENDING;
+    @NotEmpty
+    @Column(nullable = false)
+    String email;
 
-    public Person(String username, String password, String name) {
+    public Person(String username, String password, String name, String email) {
         this.username = username;
         this.password = password;
         this.name = name;
+        this.email = email;
     }
+
+    /*@OneToMany(mappedBy = "person")
+    @JsonIgnoreProperties("person")
+    Set<Issue> issue;*/
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "person_authorities",
