@@ -13,7 +13,7 @@ public class IndexController {
         model.addAttribute("message","błąd taki");
         model.addAttribute("type","danger");
 
-        return "index";
+        return "redirect:/project/";
     }
 
     @GetMapping("/contact")
@@ -21,10 +21,6 @@ public class IndexController {
         return "contact";
     }
 
-    @GetMapping("/tasks")
-    public String tasks() {
-        return "tasks";
-    }
 
 
 }

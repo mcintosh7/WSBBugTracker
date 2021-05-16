@@ -51,6 +51,28 @@
 
             </div>
 
+            <div class="row">
+                <div class="mb-3">
+                    <div>
+                        <label for="name">Opis projektu</label>
+                    </div>
+                    <div>
+                        <input id="description"
+                               type="text"
+                               th:field="*{description}"
+                               placeholder="Opis projektu"
+                               class="form-control"
+                               th:class="'form-control ' + ${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
+
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{description}"></small>
+
+                    </div>
+                </div>
+
+            </div>
+
             <div>
                 <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
 

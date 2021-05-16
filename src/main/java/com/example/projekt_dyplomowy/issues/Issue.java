@@ -18,8 +18,7 @@ import javax.persistence.*;
 public class Issue {
 
 
-    public Issue(Long id, String title, String content, State state) {
-        this.id = id;
+    public Issue(String title, String content, State state) {
         this.title = title;
         this.content = content;
         this.state = state;

@@ -30,7 +30,12 @@ public class Project {
     @ColumnDefault(value = "true")
     Boolean enabled = true;
 
-    public Project(String name) {
+    @NotEmpty
+    @Column
+    String description;
+
+    public Project(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 }

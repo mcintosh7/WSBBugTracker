@@ -39,6 +39,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nazwa projektu</th>
+                <th>Opis projektu</th>
                 <th>Usuń</th>
             </tr>
             </thead>
@@ -46,6 +47,7 @@
                 style="cursor: pointer">
                 <td th:text="${project.id}"></td>
                 <td th:text="${project.name}"></td>
+                <td th:text="${project.description}"></td>
                 <td><a th:href="@{/project/delete/{id}(id=${project.id})}">&times;</a></td>
             </tr>
 
