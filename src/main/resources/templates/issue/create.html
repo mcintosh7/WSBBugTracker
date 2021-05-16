@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
+                <!--<div class="mb-3">
                     <div>
                         <label for="assignee">Osoba przydzielona</label>
                     </div>
@@ -52,16 +52,12 @@
                         <select id="assignee"
                                 th:field="*{assignee}"
                                 class="form-control">
-                            <option th:value="${null}"
-                                    placeholder="Przydzielony"></option>
+                            <option th:value="${null}"></option>
                             <option th:each="person : ${people}"
                                     th:text="${person.name}"></option>
                         </select>
-                        <small class="text-danger"
-                               th:if="${#fields.hasErrors('assignee')}"
-                               th:errors="*{assignee}"></small>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="mb-3">
                     <div>
@@ -79,15 +75,21 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="assigneeProject">Projekt</label>
+                        <label for="project">Projekt</label>
                     </div>
                     <div>
-                        <input id="assigneeProject"
-                               type="text"
-                               th:field="*{project}"
-                               placeholder="Projekt"
-                               class="form-control"/>
-
+                        <select id="project"
+                                th:field="*{project}"
+                                class="form-control">
+                            <option th:value="${null}">
+                            </option>
+                            <option th:each="project : ${projects}"
+                                    th:value="${project.id}"
+                                    th:text="${project.name}"></option>
+                        </select>
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('project')}"
+                               th:errors="*{project}"></small>
                     </div>
                 </div>
 
