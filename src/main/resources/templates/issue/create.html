@@ -30,6 +30,27 @@
         <form th:action="@{/issue/save}" th:object="${issues}" method="post">
             <input type="hidden" th:field="*{id}"/>
 
+            <div class="mb-3">
+                <div>
+                    <label for="project">Projekt</label>
+                </div>
+                <div>
+                    <select id="project"
+                            th:field="*{project}"
+                            class="form-control">
+                        <option th:value="${null}"
+                                th:text="#{project.placeholder}">
+                        </option>
+                        <option th:each="project : ${projects}"
+                                th:value="${project.id}"
+                                th:text="${project.name}"></option>
+                    </select>
+                    <small class="text-danger"
+                           th:if="${#fields.hasErrors('project')}"
+                           th:errors="*{project}"></small>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="mb-3">
                     <div>
@@ -44,20 +65,7 @@
                     </div>
                 </div>
 
-                <!--<div class="mb-3">
-                    <div>
-                        <label for="assignee">Osoba przydzielona</label>
-                    </div>
-                    <div>
-                        <select id="assignee"
-                                th:field="*{assignee}"
-                                class="form-control">
-                            <option th:value="${null}"></option>
-                            <option th:each="person : ${people}"
-                                    th:text="${person.name}"></option>
-                        </select>
-                    </div>
-                </div>-->
+
 
                 <div class="mb-3">
                     <div>
@@ -75,23 +83,22 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="project">Projekt</label>
+                        <label for="assignee">Osoba przydzielona</label>
                     </div>
                     <div>
-                        <select id="project"
-                                th:field="*{project}"
+                        <select id="assignee"
+                                th:field="*{assignee}"
                                 class="form-control">
-                            <option th:value="${null}">
-                            </option>
-                            <option th:each="project : ${projects}"
-                                    th:value="${project.id}"
-                                    th:text="${project.name}"></option>
+                            <option th:value="${null}"
+                                    th:text="#{assignee.placeholder}"></option>
+                            <option th:each="person : ${people}"
+                                    th:value="${person.id}"
+                                    th:text="${person.name}"></option>
                         </select>
-                        <small class="text-danger"
-                               th:if="${#fields.hasErrors('project')}"
-                               th:errors="*{project}"></small>
                     </div>
                 </div>
+
+
 
             </div>
 

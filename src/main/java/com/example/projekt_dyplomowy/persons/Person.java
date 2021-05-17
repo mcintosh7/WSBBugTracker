@@ -57,9 +57,9 @@ public class Person {
         this.email = email;
     }
 
-    /*@OneToMany(mappedBy = "person")
-    @JsonIgnoreProperties("person")
-    Set<Issue> issue;*/
+    @OneToMany(mappedBy = "assignee")
+    @JsonIgnoreProperties("assignee")
+    Set<Issue> issues;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "person_authorities",
