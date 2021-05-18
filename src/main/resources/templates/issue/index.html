@@ -18,6 +18,14 @@
             integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
             crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+            integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet"
+          type="text/css"/>
+
     <script>
         function rowClicked(value) {
             location.href = "/issue/edit/" + value;
@@ -27,15 +35,17 @@
 </head>
 
 <body>
-<section class="container">
-    <div layout:fragment="content">
-        <h1>
-            Zgłoszenia
-        </h1>
 
-        <form th:action="@{/issue}" th:object="${filters}"
-              class="form-inline">
+<section class="container"
+         layout:fragment="content">
+    <h1>
+        Zgłoszenia
+    </h1>
 
+    <form th:action="@{/issue}" th:object="${filter}"
+         class="form-inline">
+
+        <label>
             <select th:field="*{project}"
                     class="form-control"
                     onchange="this.form.submit()">
@@ -45,7 +55,9 @@
                         th:value="${project.id}"
                         th:text="${project.name}"></option>
             </select>
+        </label>
 
+        <label>
             <select th:field="*{assignee}"
                     class="form-control"
                     onchange="this.form.submit()">
@@ -54,7 +66,9 @@
                         th:value="${person.id}"
                         th:text="${person.name}"></option>
             </select>
+        </label>
 
+        <label>
             <select th:field="*{state}"
                     class="form-control"
                     onchange="this.form.submit()">
@@ -63,21 +77,24 @@
                         th:value="${state}"
                         th:text="${#messages.msg('state.' + state)}"></option>
             </select>
+        </label>
 
+        <label>
             <input th:field="*{title}"
                    class="form-control"
                    th:placeholder="#{title.placeholder}"/>
+        </label>
 
+        <label>
             <input th:field="*{globalSearch}"
                    class="form-control"
                    th:placeholder="#{globalSearch.placeholder}"/>
+        </label>
 
-            <button class="btn btn-primary" type="submit" th:text="#{common.search}"></button>
-            <a th:href="@{/issue}" th:text="#{common.clear}" class="btn btn-default"></a>
-        </form>
-    </div>
+        <button class="btn btn-primary" type="submit" th:text="#{common.search}"></button>
+        <a th:href="@{/issue}" th:text="#{common.clear}" class="btn btn-default"></a>
 
-    <div>
+
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -94,7 +111,7 @@
                 style="cursor: pointer">
                 <td th:text="${issue.id}"></td>
                 <td th:text="${issue.project.name}"></td>
-                <td th:text="${issue.state}"></td>
+                <td th:text="${#messages.msg('state.' + issue.state)}"></td>
                 <td th:text="${issue.title}"></td>
                 <td th:text="${issue.content}"></td>
                 <td th:if="${issue.assignee != null}" th:text="${issue.assignee.name}"></td>
@@ -107,7 +124,7 @@
                class="btn btn-primary"></a>
         </div>
 
-    </div>
+    </form>
 </section>
 
 </body>

@@ -27,13 +27,6 @@ public class IssueController {
         this.projectRepository = projectRepository;
     }
 
-    @GetMapping("/")
-    @Secured("ROLE_USERS_TAB")
-    ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("issue/index");
-        modelAndView.addObject("issues", issueRepository.findAll());
-        return modelAndView;
-    }
 
     @GetMapping("/create")
     @Secured("ROLE_USERS_TAB")
@@ -59,15 +52,17 @@ public class IssueController {
     @Secured("ROLE_USERS_TAB")
     ModelAndView edit(@PathVariable("id") Long id) {
         Issue issue = issueRepository.findById(id).orElse(null);
-        if (issue == null) {
-            return index();
-        }
         ModelAndView modelAndView = new ModelAndView("issue/create");
+        if (issue == null) {
+            modelAndView.setViewName("redirect:/issue/");
+            return modelAndView;
+        }
         modelAndView.addObject("issues", issue);
         return modelAndView;
     }
 
     @GetMapping
+    @Secured("ROLE_USERS_TAB")
     ModelAndView index(@ModelAttribute IssueFilter issueFilter) {
         ModelAndView modelAndView = new ModelAndView("issue/index");
 
@@ -76,7 +71,7 @@ public class IssueController {
         modelAndView.addObject("people", personRepository.findAll());
         modelAndView.addObject("states", State.values());
 
-        modelAndView.addObject("filters", issueFilter);
+        modelAndView.addObject("filter", issueFilter);
 
         return modelAndView;
     }
