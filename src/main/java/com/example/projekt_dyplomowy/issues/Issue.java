@@ -38,7 +38,7 @@ public class Issue {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    State state = State.PENDING;
+    State state = State.NEW;
 
     @ManyToOne()
     @JoinColumn(name = "assignee_id", nullable = false)

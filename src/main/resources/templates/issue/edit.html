@@ -24,7 +24,7 @@
 <section class="container">
     <div layout:fragment="content">
         <h1>
-            Stwórz nowe zgłoszenie
+            Edytuj zgłoszenie
         </h1>
 
         <form th:action="@{/issue/save}" th:object="${issues}" method="post">
@@ -71,28 +71,27 @@
                         <label for="content">Opis zgłoszenia</label>
                     </div>
                     <div>
-                        <textarea id="content"
-                                  rows="5" cols="30"
-                                  type="text"
-                                  th:field="*{content}"
-                                  placeholder="Opis zgłoszenia"
-                                  class="form-control">
-                        </textarea>
+                        <input id="content"
+                               type="text"
+                               th:field="*{content}"
+                               placeholder="Nazwa"
+                               class="form-control"/>
 
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <div>
-                        <label for="state">Status</label>
+                        <label for="project">Status</label>
                     </div>
                     <div>
-                        <input id="state"
-                               type="text"
-                               th:field="*{state}"
-                               placeholder="Status"
-                               class="form-control"/>
-
+                        <select id="status"
+                                th:field="*{state}"
+                                class="form-control">
+                            <option th:each="state : ${states}"
+                                    th:value="${state}"
+                                    th:text="${#messages.msg('state.' + state)}"></option>
+                        </select>
                     </div>
                 </div>
 
@@ -118,9 +117,7 @@
 
             <div>
                 <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
-
-                <a th:href="@{/issue/}" class="btn btn-secondary" th:text="Anuluj"></a>
-
+                <a th:href="@{'/issue/preview/' + ${id}}" class="btn btn-secondary" th:text="Powrót"></a>
             </div>
         </form>
     </div>

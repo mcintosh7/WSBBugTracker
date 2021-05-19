@@ -38,6 +38,21 @@ public class IssueController {
         return modelAndView;
     }
 
+    @GetMapping("/preview/{id}")
+    @Secured("ROLE_USERS_TAB")
+    ModelAndView preview(@PathVariable("id") Long id) {
+        Issue issue = issueRepository.findById(id).orElse(null);
+        ModelAndView modelAndView = new ModelAndView("issue/preview");
+        if (issue == null) {
+            modelAndView.setViewName("redirect:/issue/");
+            return modelAndView;
+        }
+        modelAndView.addObject("issues", issue);
+        modelAndView.addObject("people", personService.findAllUsers());
+        modelAndView.addObject("projects", projectRepository.findByEnabled(true));
+        return modelAndView;
+    }
+
     @PostMapping(value = "/save")
     @Secured("ROLE_USERS_TAB")
     ModelAndView save(@ModelAttribute Issue issue) {
@@ -52,12 +67,15 @@ public class IssueController {
     @Secured("ROLE_USERS_TAB")
     ModelAndView edit(@PathVariable("id") Long id) {
         Issue issue = issueRepository.findById(id).orElse(null);
-        ModelAndView modelAndView = new ModelAndView("issue/create");
+        ModelAndView modelAndView = new ModelAndView("issue/edit");
         if (issue == null) {
             modelAndView.setViewName("redirect:/issue/");
             return modelAndView;
         }
         modelAndView.addObject("issues", issue);
+        modelAndView.addObject("people", personService.findAllUsers());
+        modelAndView.addObject("projects", projectRepository.findByEnabled(true));
+        modelAndView.addObject("states", State.values());
         return modelAndView;
     }
 
