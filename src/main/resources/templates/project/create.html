@@ -26,7 +26,7 @@
             Stwórz nowy projekt
         </h1>
 
-        <form th:action="@{/project/save}" th:object="${projects}" method="post">
+        <form th:action="@{/project/save}" th:object="${project}" method="post">
             <input type="hidden" th:field="*{id}"/>
 
             <div class="row">
@@ -61,10 +61,10 @@
                                th:field="*{description}"
                                placeholder="Opis projektu"
                                class="form-control"
-                               th:class="'form-control ' + ${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
+                               th:class="'form-control ' + ${#fields.hasErrors('description') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
-                               th:if="${#fields.hasErrors('name')}"
+                               th:if="${#fields.hasErrors('description')}"
                                th:errors="*{description}"></small>
 
                     </div>

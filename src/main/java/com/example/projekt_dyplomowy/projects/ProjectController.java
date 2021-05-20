@@ -33,7 +33,7 @@ public class ProjectController {
     @Secured("ROLE_USERS_TAB")
     ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView("project/create");
-        modelAndView.addObject("projects", new Project());
+        modelAndView.addObject("project", new Project());
         return modelAndView;
     }
 
