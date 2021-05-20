@@ -51,6 +51,38 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+                <div>
+                    <label for="type">Typ</label>
+                </div>
+                <div>
+                    <select id="type"
+                            th:field="*{type}"
+                            class="form-control">
+                        <option th:value="${null}"
+                                th:text="#{type.placeholder}"></option>
+                        <option th:each="type : ${types}"
+                                th:value="${type}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div>
+                    <label for="priority">Typ</label>
+                </div>
+                <div>
+                    <select id="priority"
+                            th:field="*{priority}"
+                            class="form-control">
+                        <option th:value="${null}"
+                                th:text="#{priority.placeholder}"></option>
+                        <option th:each="priority : ${priorities}"
+                                th:value="${priority}"></option>
+                    </select>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="mb-3">
                     <div>
@@ -78,20 +110,6 @@
                                   placeholder="Opis zgłoszenia"
                                   class="form-control">
                         </textarea>
-
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <div>
-                        <label for="state">Status</label>
-                    </div>
-                    <div>
-                        <input id="state"
-                               type="text"
-                               th:field="*{state}"
-                               placeholder="Status"
-                               class="form-control"/>
 
                     </div>
                 </div>

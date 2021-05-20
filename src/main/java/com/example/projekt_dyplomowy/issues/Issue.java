@@ -1,6 +1,8 @@
 package com.example.projekt_dyplomowy.issues;
 
+import com.example.projekt_dyplomowy.enums.Priority;
 import com.example.projekt_dyplomowy.enums.State;
+import com.example.projekt_dyplomowy.enums.Type;
 import com.example.projekt_dyplomowy.persons.Person;
 import com.example.projekt_dyplomowy.projects.Project;
 import lombok.Getter;
@@ -18,12 +20,14 @@ import javax.persistence.*;
 public class Issue {
 
 
-    public Issue(String title, String content, State state, Person name, Project project) {
+    public Issue(String title, String content, State state, Person name, Project project, Priority priority,Type type) {
         this.title = title;
         this.content = content;
         this.state = state;
         this.assignee = name;
         this.project = project;
+        this.priority = priority;
+        this.type = type;
     }
 
     @Id
@@ -39,6 +43,14 @@ public class Issue {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     State state = State.NEW;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    Priority priority;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    Type type;
 
     @ManyToOne()
     @JoinColumn(name = "assignee_id", nullable = false)

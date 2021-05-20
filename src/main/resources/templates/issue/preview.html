@@ -65,12 +65,13 @@
                         <label for="content">Opis zgłoszenia</label>
                     </div>
                     <div>
-                        <input id="content"
-                               type="text"
-                               th:field="*{content}"
-                               placeholder="Nazwa"
-                               class="form-control"
-                               readonly="readonly"/>
+                        <textarea id="content"
+                                  type="text"
+                                  th:field="*{content}"
+                                  placeholder="Nazwa"
+                                  class="form-control"
+                                  readonly="readonly">
+                        </textarea>
 
                     </div>
                 </div>

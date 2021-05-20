@@ -104,6 +104,8 @@
                 <th>Tytuł</th>
                 <th>Opis</th>
                 <th>Przydzielone do</th>
+                <th>Priorytet</th>
+                <th>Typ</th>
             </tr>
             </thead>
 
@@ -114,6 +116,8 @@
                 <td th:text="${#messages.msg('state.' + issue.state)}"></td>
                 <td th:text="${issue.title}"></td>
                 <td th:text="${issue.content}"></td>
+                <td th:text="${issue.type}"></td>
+                <td th:text="${issue.priority}"></td>
                 <td th:if="${issue.assignee != null}" th:text="${issue.assignee.name}"></td>
             </tr>
         </table>

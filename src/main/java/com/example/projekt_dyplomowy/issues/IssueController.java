@@ -1,6 +1,8 @@
 package com.example.projekt_dyplomowy.issues;
 
+import com.example.projekt_dyplomowy.enums.Priority;
 import com.example.projekt_dyplomowy.enums.State;
+import com.example.projekt_dyplomowy.enums.Type;
 import com.example.projekt_dyplomowy.persons.PersonRepository;
 import com.example.projekt_dyplomowy.persons.PersonService;
 import com.example.projekt_dyplomowy.projects.ProjectRepository;
@@ -35,6 +37,9 @@ public class IssueController {
         modelAndView.addObject("issues", new Issue());
         modelAndView.addObject("people", personService.findAllUsers());
         modelAndView.addObject("projects", projectRepository.findByEnabled(true));
+        modelAndView.addObject("types", Type.values());
+        modelAndView.addObject("priorities", Priority.values());
+
         return modelAndView;
     }
 
