@@ -30,6 +30,7 @@
         <form th:action="@{/issue/save}" th:object="${issues}" method="post">
             <input type="hidden" th:field="*{id}"/>
 
+            <div class="form-group row">
             <div class="mb-3">
                 <div>
                     <label for="project">Projekt</label>
@@ -62,14 +63,15 @@
                         <option th:value="${null}"
                                 th:text="#{type.placeholder}"></option>
                         <option th:each="type : ${types}"
-                                th:value="${type}"></option>
+                                th:value="${type}"
+                                th:text="${#messages.msg('type.' + type)}"></option>
                     </select>
                 </div>
             </div>
 
             <div class="mb-3">
                 <div>
-                    <label for="priority">Typ</label>
+                    <label for="priority">Priorytet</label>
                 </div>
                 <div>
                     <select id="priority"
@@ -78,12 +80,12 @@
                         <option th:value="${null}"
                                 th:text="#{priority.placeholder}"></option>
                         <option th:each="priority : ${priorities}"
-                                th:value="${priority}"></option>
+                                th:value="${priority}"
+                                th:text="${#messages.msg('priority.' + priority)}"></option>
                     </select>
                 </div>
             </div>
 
-            <div class="row">
                 <div class="mb-3">
                     <div>
                         <label for="title">Tytuł</label>
@@ -93,10 +95,17 @@
                                type="text"
                                th:field="*{title}"
                                placeholder="Nazwa"
-                               class="form-control"/>
+                               class="form-control"
+                               th:class="'form-control ' + ${#fields.hasErrors('title') ? 'is-invalid' : ''}"/>
+
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('title')}"
+                               th:errors="*{title}">
+
+                        </small>
+
                     </div>
                 </div>
-
 
                 <div class="mb-3">
                     <div>
@@ -130,8 +139,6 @@
                         </select>
                     </div>
                 </div>
-
-
             </div>
 
             <div>

@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -34,6 +35,7 @@ public class Issue {
     @GeneratedValue
     Long id;
 
+    @NotEmpty
     @Column(nullable = false)
     String title;
 

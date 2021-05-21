@@ -8,8 +8,11 @@ import com.example.projekt_dyplomowy.persons.PersonService;
 import com.example.projekt_dyplomowy.projects.ProjectRepository;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/issue")
@@ -60,8 +63,18 @@ public class IssueController {
 
     @PostMapping(value = "/save")
     @Secured("ROLE_USERS_TAB")
-    ModelAndView save(@ModelAttribute Issue issue) {
+    ModelAndView save(@ModelAttribute @Valid Issue issue, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("issue/create");
+            modelAndView.addObject("issues", issue);
+            modelAndView.addObject("projects", projectRepository.findAll());
+            modelAndView.addObject("types", Type.values());
+            modelAndView.addObject("priorities", Priority.values());
+            modelAndView.addObject("people", personService.findAllUsers());
+            return modelAndView;
+        }
 
         issueService.saveIssue(issue);
         modelAndView.setViewName("redirect:/issue/");
@@ -93,6 +106,8 @@ public class IssueController {
         modelAndView.addObject("projects", projectRepository.findAll());
         modelAndView.addObject("people", personRepository.findAll());
         modelAndView.addObject("states", State.values());
+        modelAndView.addObject("type", Type.values());
+        modelAndView.addObject("priority", Priority.values());
 
         modelAndView.addObject("filter", issueFilter);
 

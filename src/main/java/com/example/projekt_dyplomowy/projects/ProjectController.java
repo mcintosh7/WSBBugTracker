@@ -60,13 +60,13 @@ public class ProjectController {
             return index();
         }
         ModelAndView modelAndView = new ModelAndView("project/create");
-        modelAndView.addObject("projects", project);
+        modelAndView.addObject("project", project);
         return modelAndView;
     }
 
     @GetMapping("/delete/{id}")
     @Secured("ROLE_USERS_TAB")
-    ModelAndView deleteUser(@PathVariable ("id") Long id) {
+    ModelAndView delete(@PathVariable ("id") Long id) {
         Project project = projectRepository.findById(id).orElse(null);
         if (project == null) {
             return index();
