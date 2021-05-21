@@ -17,7 +17,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
             crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -27,64 +26,72 @@
             Stwórz nowe zgłoszenie
         </h1>
 
-        <form th:action="@{/issue/save}" th:object="${issues}" method="post">
+        <form th:action="@{/issue/save}" th:object="${issue}" method="post">
             <input type="hidden" th:field="*{id}"/>
 
-            <div class="form-group row">
-            <div class="mb-3">
-                <div>
-                    <label for="project">Projekt</label>
+            <div class="row">
+                <div class="mb-3">
+                    <div>
+                        <label for="project">Projekt</label>
+                    </div>
+                    <div>
+                        <select id="project"
+                                th:field="*{project}"
+                                th:class="'form-control ' + ${#fields.hasErrors('project') ? 'is-invalid' : ''}">
+                            <option th:value="${null}"
+                                    th:text="#{project.placeholder}">
+                            </option>
+                            <option th:each="project : ${projects}"
+                                    th:value="${project.id}"
+                                    th:text="${project.name}"></option>
+                        </select>
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('project')}"
+                               th:errors="*{project}"></small>
+                    </div>
                 </div>
-                <div>
-                    <select id="project"
-                            th:field="*{project}"
-                            class="form-control">
-                        <option th:value="${null}"
-                                th:text="#{project.placeholder}">
-                        </option>
-                        <option th:each="project : ${projects}"
-                                th:value="${project.id}"
-                                th:text="${project.name}"></option>
-                    </select>
-                    <small class="text-danger"
-                           th:if="${#fields.hasErrors('project')}"
-                           th:errors="*{project}"></small>
-                </div>
-            </div>
 
-            <div class="mb-3">
-                <div>
-                    <label for="type">Typ</label>
+                <div class="mb-3">
+                    <div>
+                        <label for="type">Typ</label>
+                    </div>
+                    <div>
+                        <select id="type"
+                                th:field="*{type}"
+                                th:class="'form-control ' + ${#fields.hasErrors('type') ? 'is-invalid' : ''}">
+                            <option th:value="${null}"
+                                    th:text="#{type.placeholder}"></option>
+                            <option th:each="type : ${types}"
+                                    th:value="${type}"
+                                    th:text="${#messages.msg('type.' + type)}"></option>
+                        </select>
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('type')}"
+                               th:errors="*{type}">
+                        </small>
+                    </div>
                 </div>
-                <div>
-                    <select id="type"
-                            th:field="*{type}"
-                            class="form-control">
-                        <option th:value="${null}"
-                                th:text="#{type.placeholder}"></option>
-                        <option th:each="type : ${types}"
-                                th:value="${type}"
-                                th:text="${#messages.msg('type.' + type)}"></option>
-                    </select>
-                </div>
-            </div>
 
-            <div class="mb-3">
-                <div>
-                    <label for="priority">Priorytet</label>
+                <div class="mb-3">
+                    <div>
+                        <label for="priority">Priorytet</label>
+                    </div>
+                    <div>
+                        <select id="priority"
+                                th:field="*{priority}"
+                                th:class="'form-control ' + ${#fields.hasErrors('priority') ? 'is-invalid' : ''}">
+                            <option th:value="${null}"
+                                    th:text="#{priority.placeholder}"></option>
+                            <option th:each="priority : ${priorities}"
+                                    th:value="${priority}"
+                                    th:text="${#messages.msg('priority.' + priority)}"></option>
+                        </select>
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('priority')}"
+                               th:errors="*{priority}">
+                        </small>
+                    </div>
                 </div>
-                <div>
-                    <select id="priority"
-                            th:field="*{priority}"
-                            class="form-control">
-                        <option th:value="${null}"
-                                th:text="#{priority.placeholder}"></option>
-                        <option th:each="priority : ${priorities}"
-                                th:value="${priority}"
-                                th:text="${#messages.msg('priority.' + priority)}"></option>
-                    </select>
-                </div>
-            </div>
 
                 <div class="mb-3">
                     <div>
@@ -95,13 +102,11 @@
                                type="text"
                                th:field="*{title}"
                                placeholder="Nazwa"
-                               class="form-control"
                                th:class="'form-control ' + ${#fields.hasErrors('title') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
                                th:if="${#fields.hasErrors('title')}"
                                th:errors="*{title}">
-
                         </small>
 
                     </div>
@@ -114,7 +119,6 @@
                     <div>
                         <textarea id="content"
                                   rows="5" cols="30"
-                                  type="text"
                                   th:field="*{content}"
                                   placeholder="Opis zgłoszenia"
                                   class="form-control">
@@ -130,13 +134,17 @@
                     <div>
                         <select id="assignee"
                                 th:field="*{assignee}"
-                                class="form-control">
+                                th:class="'form-control ' + ${#fields.hasErrors('assignee') ? 'is-invalid' : ''}">
                             <option th:value="${null}"
                                     th:text="#{assignee.placeholder}"></option>
                             <option th:each="person : ${people}"
                                     th:value="${person.id}"
                                     th:text="${person.name}"></option>
                         </select>
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('assignee')}"
+                               th:errors="*{assignee}">
+                        </small>
                     </div>
                 </div>
             </div>

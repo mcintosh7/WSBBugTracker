@@ -37,7 +37,7 @@ public class IssueController {
     @Secured("ROLE_USERS_TAB")
     ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView("issue/create");
-        modelAndView.addObject("issues", new Issue());
+        modelAndView.addObject("issue", new Issue());
         modelAndView.addObject("people", personService.findAllUsers());
         modelAndView.addObject("projects", projectRepository.findByEnabled(true));
         modelAndView.addObject("types", Type.values());
@@ -68,7 +68,7 @@ public class IssueController {
 
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("issue/create");
-            modelAndView.addObject("issues", issue);
+            modelAndView.addObject("issue", issue);
             modelAndView.addObject("projects", projectRepository.findAll());
             modelAndView.addObject("types", Type.values());
             modelAndView.addObject("priorities", Priority.values());

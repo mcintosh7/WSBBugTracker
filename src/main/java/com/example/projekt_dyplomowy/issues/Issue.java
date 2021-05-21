@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -47,17 +48,21 @@ public class Issue {
     State state = State.NEW;
 
     @Column(nullable = false)
+    @NotNull
     @Enumerated(EnumType.STRING)
     Priority priority;
 
+    @NotNull
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     Type type;
 
+    @NotNull
     @ManyToOne()
     @JoinColumn(name = "assignee_id", nullable = false)
     Person assignee;
 
+    @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     Project project;
