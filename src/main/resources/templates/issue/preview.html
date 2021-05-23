@@ -23,8 +23,7 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1>
-            Podgląd zgłoszenia
+        <h1 th:text="*{issues.title}">
         </h1>
 
         <form th:action="@{'/issue/edit/' + ${id}}" th:object="${issues}" method="get">
@@ -84,7 +83,7 @@
                     <div>
                         <input id="state"
                                type="text"
-                               th:field="*{state}"
+                               th:value="#{${'state.' + issues.state}}"
                                placeholder="Status"
                                class="form-control"
                                readonly="readonly"/>
@@ -98,7 +97,7 @@
                     <div>
                         <input id="type"
                                type="text"
-                               th:field="*{type}"
+                               th:value="#{${'type.' + issues.type}}"
                                placeholder="Status"
                                class="form-control"
                                readonly="readonly"/>
@@ -111,8 +110,7 @@
                     </div>
                     <div>
                         <input id="priority"
-                               type="text"
-                               th:field="*{priority}"
+                               th:value="#{${'priority.' + issues.priority}}"
                                placeholder="Status"
                                class="form-control"
                                readonly="readonly"/>
