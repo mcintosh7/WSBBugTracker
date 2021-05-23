@@ -1,5 +1,6 @@
 package com.example.projekt_dyplomowy;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,11 @@ public class IndexController {
         model.addAttribute("message","błąd taki");
         model.addAttribute("type","danger");
 
-        return "redirect:/project/";
+        return "redirect:/issue/";
     }
 
     @GetMapping("/contact")
+    @Secured(("ROLE_USERS_TAB"))
     public String contact() {
         return "contact";
     }

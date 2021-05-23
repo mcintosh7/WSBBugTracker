@@ -30,21 +30,22 @@
         <form th:action="@{'/issue/edit/' + ${id}}" th:object="${issues}" method="get">
             <input type="hidden" th:field="*{id}"/>
 
-            <div class="mb-3">
-                <div>
-                    <label for="project">Projekt</label>
-                </div>
-                <div>
-                    <input id="project"
-                           type="text"
-                           th:field="*{project.name}"
-                           placeholder="Nazwa"
-                           class="form-control"
-                           readonly="readonly"/>
-                </div>
-            </div>
-
             <div class="row">
+                <div class="mb-3">
+                    <div>
+                        <label for="project">Projekt</label>
+                    </div>
+                    <div>
+                        <input id="project"
+                               type="text"
+                               th:field="*{project.name}"
+                               placeholder="Nazwa"
+                               class="form-control"
+                               readonly="readonly"/>
+                    </div>
+                </div>
+
+
                 <div class="mb-3">
                     <div>
                         <label for="title">Tytuł</label>
@@ -87,7 +88,34 @@
                                placeholder="Status"
                                class="form-control"
                                readonly="readonly"/>
+                    </div>
+                </div>
 
+                <div class="mb-3">
+                    <div>
+                        <label for="type">Typ</label>
+                    </div>
+                    <div>
+                        <input id="type"
+                               type="text"
+                               th:field="*{type}"
+                               placeholder="Status"
+                               class="form-control"
+                               readonly="readonly"/>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div>
+                        <label for="priority">Priorytet</label>
+                    </div>
+                    <div>
+                        <input id="priority"
+                               type="text"
+                               th:field="*{priority}"
+                               placeholder="Status"
+                               class="form-control"
+                               readonly="readonly"/>
                     </div>
                 </div>
 
@@ -104,8 +132,6 @@
                                readonly="readonly"/>
                     </div>
                 </div>
-
-
             </div>
 
             <div>

@@ -5,14 +5,83 @@
       xmlns:layout="https://ultraq.github.io/thymeleaf-layout-dialect/">
 <head>
     <meta charset="UTF-8">
-    <title>Strona o autorze</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+
+    <link rel="stylesheet" href="/css/main.css" type="text/css"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"
+    ></script>
 </head>
 <body>
 <section class="container">
     <div layout:fragment="content">
         <h1>
-            O mnie
+            Moje konto
         </h1>
+        <div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <img src="/images/bug.jpg" class="img-fluid img-thumbnail text-center" alt="test"/>
+                    <div class="mt-md-3">
+                        treść jakaś
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6">
+                    <form class="mt-2" th:action="@{/mails}" method="post" enctype="multipart/form-data">
+                        <h3>
+                            Kontakt
+                        </h3>
+
+                        <div class="row form-group">
+                            <div class="col-sm-3">Podaj twój email</div>
+                            <div class="col-sm-9">
+                                <input type="email" name="sender" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-sm-3">Tytuł</div>
+                            <div class="col-sm-9">
+                                <input type="text" name="subject" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-sm-3">Treść</div>
+                            <div class="col-sm-9">
+                                <textarea rows="10" name="content" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-sm-3">Załącznik</div>
+                            <div class="col-sm-9">
+                                <input type="file" name="attachment" class="form-control-file">
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Wyślij</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 </body>
