@@ -3,8 +3,10 @@ package com.example.projekt_dyplomowy.issues;
 import com.example.projekt_dyplomowy.enums.Priority;
 import com.example.projekt_dyplomowy.enums.State;
 import com.example.projekt_dyplomowy.enums.Type;
+import com.example.projekt_dyplomowy.mails.MailService;
 import com.example.projekt_dyplomowy.persons.PersonRepository;
 import com.example.projekt_dyplomowy.persons.PersonService;
+import com.example.projekt_dyplomowy.projects.Project;
 import com.example.projekt_dyplomowy.projects.ProjectRepository;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -23,13 +25,15 @@ public class IssueController {
     final PersonService personService;
     final PersonRepository personRepository;
     final ProjectRepository projectRepository;
+    final MailService mailService;
 
-    public IssueController(IssueRepository issueRepository, IssueService issueService, PersonService personService, PersonRepository personRepository, ProjectRepository projectRepository) {
+    public IssueController(IssueRepository issueRepository, IssueService issueService, PersonService personService, PersonRepository personRepository, ProjectRepository projectRepository, MailService mailService) {
         this.issueRepository = issueRepository;
         this.issueService = issueService;
         this.personService = personService;
         this.personRepository = personRepository;
         this.projectRepository = projectRepository;
+        this.mailService = mailService;
     }
 
 
@@ -97,12 +101,28 @@ public class IssueController {
         return modelAndView;
     }
 
+    @GetMapping("/delete/{id}")
+    @Secured("ROLE_USERS_TAB")
+    ModelAndView delete(@PathVariable ("id") Long id) {
+        Issue issue = issueRepository.findById(id).orElse(null);
+        ModelAndView modelAndView = new ModelAndView("issue/index");
+        if (issue == null) {
+            modelAndView.setViewName("redirect:/issue/");
+            return modelAndView;
+        }
+
+        issueService.deleteIssue(issue);
+        modelAndView.setViewName("redirect:/issue/");
+        return modelAndView;
+    }
+
     @GetMapping
     @Secured("ROLE_USERS_TAB")
     ModelAndView index(@ModelAttribute IssueFilter issueFilter) {
         ModelAndView modelAndView = new ModelAndView("issue/index");
 
         modelAndView.addObject("issues", issueRepository.findAll(issueFilter.buildQuery()));
+        modelAndView.addObject("issues", issueRepository.findByEnabled(true));
         modelAndView.addObject("projects", projectRepository.findAll());
         modelAndView.addObject("people", personRepository.findAll());
         modelAndView.addObject("states", State.values());

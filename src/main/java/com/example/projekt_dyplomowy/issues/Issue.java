@@ -8,6 +8,7 @@ import com.example.projekt_dyplomowy.projects.Project;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -56,6 +57,10 @@ public class Issue {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     Type type;
+
+    @Column(nullable = false)
+    @ColumnDefault(value = "true")
+    Boolean enabled = true;
 
     @NotNull
     @ManyToOne()
