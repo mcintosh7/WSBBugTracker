@@ -9,11 +9,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -23,7 +25,7 @@ import javax.validation.constraints.NotNull;
 public class Issue {
 
 
-    public Issue(String title, String content, State state, Person name, Project project, Priority priority,Type type) {
+    public Issue(String title, String content, State state, Person name, Project project, Priority priority, Type type, Person creator) {
         this.title = title;
         this.content = content;
         this.state = state;
@@ -53,6 +55,9 @@ public class Issue {
     @Enumerated(EnumType.STRING)
     Priority priority;
 
+    @Column(nullable = false)
+    LocalDateTime dateCreated = LocalDateTime.now();
+
     @NotNull
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -61,6 +66,9 @@ public class Issue {
     @Column(nullable = false)
     @ColumnDefault(value = "true")
     Boolean enabled = true;
+
+    /*@CreatedBy
+    Person createdBy;*/
 
     @NotNull
     @ManyToOne()

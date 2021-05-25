@@ -1,6 +1,5 @@
 package com.example.projekt_dyplomowy.persons;
 
-import com.example.projekt_dyplomowy.enums.State;
 import com.example.projekt_dyplomowy.issues.Issue;
 import com.example.projekt_dyplomowy.validators.UniqueUsername;
 import com.example.projekt_dyplomowy.validators.ValidPasswords;
@@ -12,7 +11,6 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -60,6 +58,10 @@ public class Person {
     @OneToMany(mappedBy = "assignee")
     @JsonIgnoreProperties("assignee")
     Set<Issue> issues;
+
+    /*@OneToMany(mappedBy = "creator")
+    @JsonIgnoreProperties("creator")
+    Set<Issue> issuesCreator;*/
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "person_authorities",

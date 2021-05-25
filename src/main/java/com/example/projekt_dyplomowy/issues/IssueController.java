@@ -77,6 +77,7 @@ public class IssueController {
             modelAndView.addObject("types", Type.values());
             modelAndView.addObject("priorities", Priority.values());
             modelAndView.addObject("people", personService.findAllUsers());
+            modelAndView.addObject("currentPerson", personService.currentPerson());
             return modelAndView;
         }
 
