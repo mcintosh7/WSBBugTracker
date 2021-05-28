@@ -68,7 +68,7 @@ public class IssueController {
 
     @PostMapping(value = "/save")
     @Secured("ROLE_USERS_TAB")
-    ModelAndView save(@ModelAttribute @Valid Issue issue, BindingResult bindingResult) {
+    ModelAndView save(@ModelAttribute @Valid Issue issue, BindingResult bindingResult, Mail mail) {
         ModelAndView modelAndView = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
@@ -81,7 +81,7 @@ public class IssueController {
             return modelAndView;
         }
 
-        mailService.sendToAssignee();
+        mailService.sendToAssignee(issue);
 
         issueService.saveIssue(issue);
         modelAndView.setViewName("redirect:/issue/");

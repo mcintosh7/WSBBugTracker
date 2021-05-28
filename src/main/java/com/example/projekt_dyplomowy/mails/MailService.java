@@ -39,15 +39,15 @@ public class MailService {
         }
     }
 
-    public void sendToAssignee() {
+    public void sendToAssignee(Issue issue) {
         try {
 
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
             mimeMessageHelper.setTo(issue.getAssignee().getEmail());
-            mimeMessageHelper.setSubject("tytuł wiadomości");
-            mimeMessageHelper.setText("treść wiadomości");
+            mimeMessageHelper.setSubject(issue.getTitle());
+            mimeMessageHelper.setText("Zgłoszenie zostało zmodyfikowane lub utworzone, zapoznaj się z jego szczegółami pod adresem: " + " https://www.wsb.pl");
 
             javaMailSender.send(mimeMessage);
 
