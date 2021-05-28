@@ -23,8 +23,7 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1 th:text="*{issues.title}">
-        </h1>
+        <h1 class="text-center" th:text="*{issues.title}"></h1>
 
         <form th:action="@{'/issue/edit/' + ${id}}" th:object="${issues}" method="get">
             <input type="hidden" th:field="*{id}"/>
@@ -43,22 +42,6 @@
                                readonly="readonly"/>
                     </div>
                 </div>
-
-
-                <div class="mb-3">
-                    <div>
-                        <label for="title">Tytuł</label>
-                    </div>
-                    <div>
-                        <input id="title"
-                               type="text"
-                               th:field="*{title}"
-                               placeholder="Nazwa"
-                               class="form-control"
-                               readonly="readonly"/>
-                    </div>
-                </div>
-
 
                 <div class="mb-3">
                     <div>

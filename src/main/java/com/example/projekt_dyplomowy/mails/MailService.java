@@ -39,23 +39,21 @@ public class MailService {
         }
     }
 
-    /*void sendToAssignee(Mail mail) {
+    public void sendToAssignee() {
         try {
 
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
-            mimeMessageHelper.setTo();
-            mimeMessageHelper.setSubject(mail.subject);
+            mimeMessageHelper.setTo(issue.getAssignee().getEmail());
+            mimeMessageHelper.setSubject("tytuł wiadomości");
             mimeMessageHelper.setText("treść wiadomości");
-
-            mimeMessageHelper.addAttachment(mail.attachment.getOriginalFilename(), mail.attachment);
 
             javaMailSender.send(mimeMessage);
 
         } catch (Exception e) {
             System.out.println("Wysyłanie mejla nie powiodło się " + e);
         }
-    }*/
+    }
 
 }

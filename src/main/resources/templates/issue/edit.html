@@ -23,9 +23,7 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1>
-            Edytuj zgłoszenie
-        </h1>
+        <h1 class="text-center" th:text="#{issue.edit}"></h1>
 
         <form th:action="@{/issue/save}" th:object="${issues}" method="post">
             <input type="hidden" th:field="*{id}"/>
@@ -83,6 +81,48 @@
 
                 <div class="mb-3">
                     <div>
+                        <label for="type">Typ</label>
+                    </div>
+                    <div>
+                        <select id="type"
+                                th:field="*{type}"
+                                th:class="'form-control ' + ${#fields.hasErrors('type') ? 'is-invalid' : ''}">
+                            <option th:value="${null}"
+                                    th:text="#{type.placeholder}"></option>
+                            <option th:each="type : ${types}"
+                                    th:value="${type}"
+                                    th:text="${#messages.msg('type.' + type)}"></option>
+                        </select>
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('type')}"
+                               th:errors="*{type}">
+                        </small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div>
+                        <label for="priority">Priorytet</label>
+                    </div>
+                    <div>
+                        <select id="priority"
+                                th:field="*{priority}"
+                                th:class="'form-control ' + ${#fields.hasErrors('priority') ? 'is-invalid' : ''}">
+                            <option th:value="${null}"
+                                    th:text="#{priority.placeholder}"></option>
+                            <option th:each="priority : ${priorities}"
+                                    th:value="${priority}"
+                                    th:text="${#messages.msg('priority.' + priority)}"></option>
+                        </select>
+                        <small class="text-danger"
+                               th:if="${#fields.hasErrors('priority')}"
+                               th:errors="*{priority}">
+                        </small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div>
                         <label for="project">Status</label>
                     </div>
                     <div>
@@ -118,7 +158,7 @@
 
             <div>
                 <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
-                <a th:href="@{'/issue/preview/' + ${id}}" class="btn btn-secondary" th:text="Powrót"></a>
+                <a th:href="@{'/issue/preview/' + ${id}}" class="btn btn-secondary" th:text="Anuluj"></a>
             </div>
         </form>
     </div>

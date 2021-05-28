@@ -11,6 +11,8 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -25,7 +27,7 @@ import java.time.LocalDateTime;
 public class Issue {
 
 
-    public Issue(String title, String content, State state, Person name, Project project, Priority priority, Type type, Person creator) {
+    public Issue(String title, String content, State state, Person name, Project project, Priority priority, Type type, Person createdBy) {
         this.title = title;
         this.content = content;
         this.state = state;
@@ -33,6 +35,7 @@ public class Issue {
         this.project = project;
         this.priority = priority;
         this.type = type;
+        this.createdBy = createdBy;
     }
 
     @Id
@@ -67,8 +70,9 @@ public class Issue {
     @ColumnDefault(value = "true")
     Boolean enabled = true;
 
-    /*@CreatedBy
-    Person createdBy;*/
+    @ManyToOne()
+    @CreatedBy
+    Person createdBy;
 
     @NotNull
     @ManyToOne()
@@ -79,5 +83,4 @@ public class Issue {
     @ManyToOne(optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     Project project;
-
 }

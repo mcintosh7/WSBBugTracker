@@ -37,9 +37,7 @@
 <body>
 <section class="container"
          layout:fragment="content">
-    <h1>
-        Zgłoszenia
-    </h1>
+    <h1 class="text-center" th:text="#{issue.title}"></h1>
 
     <form th:action="@{/issue}" th:object="${filter}"
          class="form-inline">

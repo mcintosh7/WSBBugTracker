@@ -3,6 +3,7 @@ package com.example.projekt_dyplomowy.issues;
 import com.example.projekt_dyplomowy.enums.Priority;
 import com.example.projekt_dyplomowy.enums.State;
 import com.example.projekt_dyplomowy.enums.Type;
+import com.example.projekt_dyplomowy.mails.Mail;
 import com.example.projekt_dyplomowy.mails.MailService;
 import com.example.projekt_dyplomowy.persons.PersonRepository;
 import com.example.projekt_dyplomowy.persons.PersonService;
@@ -77,9 +78,10 @@ public class IssueController {
             modelAndView.addObject("types", Type.values());
             modelAndView.addObject("priorities", Priority.values());
             modelAndView.addObject("people", personService.findAllUsers());
-            modelAndView.addObject("currentPerson", personService.currentPerson());
             return modelAndView;
         }
+
+        mailService.sendToAssignee();
 
         issueService.saveIssue(issue);
         modelAndView.setViewName("redirect:/issue/");
@@ -98,13 +100,15 @@ public class IssueController {
         modelAndView.addObject("issues", issue);
         modelAndView.addObject("people", personService.findAllUsers());
         modelAndView.addObject("projects", projectRepository.findByEnabled(true));
+        modelAndView.addObject("types", Type.values());
+        modelAndView.addObject("priorities", Priority.values());
         modelAndView.addObject("states", State.values());
         return modelAndView;
     }
 
     @GetMapping("/delete/{id}")
     @Secured("ROLE_USERS_TAB")
-    ModelAndView delete(@PathVariable ("id") Long id) {
+    ModelAndView delete(@PathVariable("id") Long id) {
         Issue issue = issueRepository.findById(id).orElse(null);
         ModelAndView modelAndView = new ModelAndView("issue/index");
         if (issue == null) {

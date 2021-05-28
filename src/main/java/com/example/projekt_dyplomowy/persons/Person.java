@@ -59,9 +59,9 @@ public class Person {
     @JsonIgnoreProperties("assignee")
     Set<Issue> issues;
 
-    /*@OneToMany(mappedBy = "creator")
-    @JsonIgnoreProperties("creator")
-    Set<Issue> issuesCreator;*/
+    @OneToMany(mappedBy = "createdBy")
+    @JsonIgnoreProperties("createdBy")
+    Set<Issue> createdBy;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "person_authorities",
