@@ -7,7 +7,6 @@ import com.example.projekt_dyplomowy.mails.Mail;
 import com.example.projekt_dyplomowy.mails.MailService;
 import com.example.projekt_dyplomowy.persons.PersonRepository;
 import com.example.projekt_dyplomowy.persons.PersonService;
-import com.example.projekt_dyplomowy.projects.Project;
 import com.example.projekt_dyplomowy.projects.ProjectRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -76,7 +75,7 @@ public class IssueController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("issue/create");
             modelAndView.addObject("issue", issue);
-            modelAndView.addObject("projects", projectRepository.findAll());
+            modelAndView.addObject("projects", projectRepository.findByEnabled(true));
             modelAndView.addObject("types", Type.values());
             modelAndView.addObject("priorities", Priority.values());
             modelAndView.addObject("people", personService.findAllUsers());

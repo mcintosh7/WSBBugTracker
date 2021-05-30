@@ -1,4 +1,4 @@
-package com.example.projekt_dyplomowy.config;
+package com.example.projekt_dyplomowy.audit;
 
 import lombok.Getter;
 import lombok.Setter;

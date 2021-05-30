@@ -13,6 +13,8 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -28,7 +30,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Issue {
 
-    public Issue(String title, String content, State state, Person name, Project project, Priority priority, Type type, Person createdBy) {
+    public Issue(String title, String content, State state, Person name, Project project, Priority priority, Type type) {
         this.title = title;
         this.content = content;
         this.state = state;
@@ -36,7 +38,6 @@ public class Issue {
         this.project = project;
         this.priority = priority;
         this.type = type;
-        this.createdBy = createdBy;
     }
 
     @Id
@@ -60,10 +61,6 @@ public class Issue {
     @Enumerated(EnumType.STRING)
     Priority priority;
 
-    @Column(nullable = false)
-            @CreatedDate
-    Date dateCreated = new Date();
-
     @NotNull
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -73,9 +70,19 @@ public class Issue {
     @ColumnDefault(value = "true")
     Boolean enabled = true;
 
-    @ManyToOne()
+    @Column(updatable = false)
     @CreatedBy
-    Person createdBy;
+    String createdBy;
+
+    @CreatedDate
+    @Column(updatable = false)
+    Date createdDate;
+
+    @LastModifiedBy
+    String lastModifiedBy;
+
+    @LastModifiedDate
+    Date lastModifiedDate;
 
     @NotNull
     @ManyToOne()
