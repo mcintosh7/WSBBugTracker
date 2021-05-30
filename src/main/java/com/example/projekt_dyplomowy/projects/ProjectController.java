@@ -59,7 +59,19 @@ public class ProjectController {
         if (project == null) {
             return index();
         }
-        ModelAndView modelAndView = new ModelAndView("project/create");
+        ModelAndView modelAndView = new ModelAndView("project/edit");
+        modelAndView.addObject("project", project);
+        return modelAndView;
+    }
+
+    @GetMapping("/preview/{id}")
+    @Secured("ROLE_USERS_TAB")
+    ModelAndView preview(@PathVariable("id") Long id) {
+        Project project = projectRepository.findById(id).orElse(null);
+        if (project == null) {
+            return index();
+        }
+        ModelAndView modelAndView = new ModelAndView("project/preview");
         modelAndView.addObject("project", project);
         return modelAndView;
     }
