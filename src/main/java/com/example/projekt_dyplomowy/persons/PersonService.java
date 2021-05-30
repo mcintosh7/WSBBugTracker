@@ -52,15 +52,17 @@ public class PersonService {
         personRepository.save(person);
     }
 
+    public void savePerson(PersonForm personForm) {
+        Person person = personRepository.findById(personForm.id).orElse(null);
+        person.username = personForm.username;
+        person.name = personForm.name;
+        person.email = personForm.email;
+        personRepository.save(person);
+    }
+
     public List<Person> findAllUsers() {
         return personRepository.findAll();
     }
-
-
-    /*public String currentPerson() {
-        SecurityContext sc = SecurityContextHolder.getContext();
-        return sc.getAuthentication().getName();
-    }*/
 }
 
 

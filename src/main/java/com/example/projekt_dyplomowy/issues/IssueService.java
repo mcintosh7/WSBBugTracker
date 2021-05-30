@@ -32,10 +32,9 @@ public class IssueService {
         issueRepository.save(issue);
     }
 
-    /*public issueEmail() {
-        Issue
-        return Person.;
-    }*/
+    public int countIssue() {
+        return issueRepository.findByEnabled(true).size();
+    }
 
 
 }

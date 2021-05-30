@@ -70,4 +70,13 @@ public class IssueFilter {
         return spec;
 
     }
+
+    public String toQueryString(Integer page) {
+        return "page=" + page +
+                (state != null ? "&state=" + state : "") +
+                (project != null ? "&project=" + project.getId() : "") +
+                (assignee != null ? "&assignee=" + assignee.getId() : "") +
+                (title != null ? "&title=" + title : "") +
+                (globalSearch != null ? "&globalSearch=" + globalSearch : "");
+    }
 }

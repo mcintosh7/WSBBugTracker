@@ -119,6 +119,16 @@
             </tr>
         </table>
 
+        <div th:if="${issues.totalPages > 0}" class="row">
+            <ul th:each="pageNumber : ${#numbers.sequence(1, issues.totalPages)}" class="pagination">
+                <li th:class="${'page-item ' + ((pageNumber == issues.number + 1) ? 'active' : '')}">
+                    <a th:href="@{'/issue?' + ${filter.toQueryString(pageNumber - 1)}}"
+                       th:text="${pageNumber}"
+                       class="page-link"></a>
+                </li>
+            </ul>
+        </div>
+
         <div>
             <a th:href="@{'/issue/create/'}"
                th:text="Dodaj"

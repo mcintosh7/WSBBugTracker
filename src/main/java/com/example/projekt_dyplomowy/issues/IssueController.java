@@ -9,6 +9,8 @@ import com.example.projekt_dyplomowy.persons.PersonRepository;
 import com.example.projekt_dyplomowy.persons.PersonService;
 import com.example.projekt_dyplomowy.projects.Project;
 import com.example.projekt_dyplomowy.projects.ProjectRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -81,10 +83,9 @@ public class IssueController {
             return modelAndView;
         }
 
-        mailService.sendToAssignee(issue);
-
         issueService.saveIssue(issue);
         modelAndView.setViewName("redirect:/issue/");
+        mailService.sendToAssignee(issue);
         return modelAndView;
     }
 
@@ -123,11 +124,11 @@ public class IssueController {
 
     @GetMapping
     @Secured("ROLE_USERS_TAB")
-    ModelAndView index(@ModelAttribute IssueFilter issueFilter) {
+    ModelAndView index(@ModelAttribute IssueFilter issueFilter, Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("issue/index");
 
-        modelAndView.addObject("issues", issueRepository.findAll(issueFilter.buildQuery()));
-        modelAndView.addObject("issues", issueRepository.findByEnabled(true));
+        Page<Issue> issues = issueRepository.findAll(issueFilter.buildQuery(), pageable);
+        modelAndView.addObject("issues", issues);
         modelAndView.addObject("projects", projectRepository.findAll());
         modelAndView.addObject("people", personRepository.findAll());
         modelAndView.addObject("states", State.values());

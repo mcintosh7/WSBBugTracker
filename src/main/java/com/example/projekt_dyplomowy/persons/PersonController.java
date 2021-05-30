@@ -2,6 +2,7 @@ package com.example.projekt_dyplomowy.persons;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -68,5 +69,22 @@ public class PersonController {
         modelAndView.addObject(person);
         return modelAndView;
     }
+
+    @PostMapping(value = "/update/{id}")
+    @Secured("ROLE_CREATE_USER")
+    public String updateUser(@ModelAttribute("id") long id, @Valid PersonForm personForm,
+                             BindingResult bindingResult, Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            personForm.setId(id);
+            model.addAttribute("personForm", personForm);
+            return "person/show";
+        }
+        personService.savePerson(personForm);
+        return "redirect:/people/";
+    }
+
+
 }
 

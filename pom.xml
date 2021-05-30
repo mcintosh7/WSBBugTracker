@@ -84,6 +84,11 @@
             <version>5.7.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-envers</artifactId>
+            <version>5.4.31.Final</version>
+        </dependency>
 
     </dependencies>
 

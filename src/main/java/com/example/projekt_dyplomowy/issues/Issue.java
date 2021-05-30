@@ -1,5 +1,6 @@
 package com.example.projekt_dyplomowy.issues;
 
+import com.example.projekt_dyplomowy.comments.Comment;
 import com.example.projekt_dyplomowy.enums.Priority;
 import com.example.projekt_dyplomowy.enums.State;
 import com.example.projekt_dyplomowy.enums.Type;
@@ -9,15 +10,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -25,7 +27,6 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class Issue {
-
 
     public Issue(String title, String content, State state, Person name, Project project, Priority priority, Type type, Person createdBy) {
         this.title = title;
@@ -49,6 +50,7 @@ public class Issue {
     @Column(columnDefinition = "TEXT")
     String content;
 
+    @Audited
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     State state = State.NEW;
@@ -59,7 +61,8 @@ public class Issue {
     Priority priority;
 
     @Column(nullable = false)
-    LocalDateTime dateCreated = LocalDateTime.now();
+            @CreatedDate
+    Date dateCreated = new Date();
 
     @NotNull
     @Column(nullable = false)
@@ -83,4 +86,7 @@ public class Issue {
     @ManyToOne(optional = false)
     @JoinColumn(name = "project_id", nullable = false)
     Project project;
+
+    @OneToMany(mappedBy = "issue")
+    Set<Comment> comments;
 }
