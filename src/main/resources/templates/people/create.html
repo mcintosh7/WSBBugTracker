@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Spring Security Demo</title>
+    <title th:text="#{person.title}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -22,9 +22,7 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1>
-            Stwórz użytkownika
-        </h1>
+        <h1 th:text="#{person.create}"></h1>
 
         <form th:action="@{/people/save}" th:object="${person}" method="post">
             <input type="hidden" th:field="*{id}"/>
@@ -32,13 +30,13 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="username">Login</label>
+                        <label for="username" th:text="#{login.user}"></label>
                     </div>
                     <div>
                         <input id="username"
                                type="text"
                                th:field="*{username}"
-                               placeholder="Login użytkownika"
+                               th:placeholder="#{login.user}"
                                th:class="'form-control ' + ${#fields.hasErrors('username') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -49,13 +47,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="name">Imię i nazwisko</label>
+                        <label for="name" th:text="#{person.nameAndSurname}"></label>
                     </div>
                     <div>
                         <input id="name"
                                type="text"
                                th:field="*{name}"
-                               placeholder="Imię i nazwisko"
+                               th:placeholder="#{person.nameAndSurname}"
                                th:class="'form-control ' + ${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -66,13 +64,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="password">Hasło</label>
+                        <label for="password" th:text="#{login.password}"></label>
                     </div>
                     <div>
                         <input id="password"
                                type="password"
                                th:field="*{password}"
-                               placeholder="Hasło"
+                               th:placeholder="#{login.password}"
                                th:class="'form-control ' + ${#fields.hasErrors('password') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -83,13 +81,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="repeated-password">Powtórz hasło</label>
+                        <label for="repeated-password" th:text="#{login.repeatedPassword}"></label>
                     </div>
                     <div>
                         <input id="repeated-password"
                                type="password"
                                th:field="*{repeatedPassword}"
-                               placeholder="Hasło"
+                               th:placeholder="#{login.repeatedPassword}"
                                th:class="'form-control ' + ${#fields.hasErrors('repeatedPassword') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -100,13 +98,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="email">Email</label>
+                        <label for="email" th:text="#{person.email}"></label>
                     </div>
                     <div>
                         <input id="email"
                                type="text"
                                th:field="*{email}"
-                               placeholder="Email"
+                               th:placeholder="#{person.email}"
                                th:class="'form-control ' + ${#fields.hasErrors('email') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -118,16 +116,17 @@
             </div>
 
             <div class="mb-3">
-                Uprawnienia:
+                <div th:text="#{person.permission}"></div>
+                <div>
+                    <p th:each="authority : ${authorities}">
+                        <input type="checkbox" name="authority"
+                               th:value="${authority.id}"
+                               th:field="*{authorities}"/>
 
-                <p th:each="authority : ${authorities}">
-                    <input type="checkbox" name="authorities"
-                           th:value="${authority.id}"
-                           th:field="*{authorities}"/>
-
-                    <label th:text="#{${'authority.' + authority.name}}"
-                           th:for="${#ids.prev('authorities')}"></label>
-                </p>
+                        <label th:text="#{${'authority.' + authority.name}}"
+                               th:for="${#ids.prev('authorities')}"></label>
+                    </p>
+                </div>
             </div>
 
             <div>

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Stwórz projekt</title>
+    <title th:text="#{issue.edit}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -30,7 +30,7 @@
 
             <div class="mb-3">
                 <div>
-                    <label for="project">Projekt</label>
+                    <label for="project" th:text="#{issue.project}"></label>
                 </div>
                 <div>
                     <select id="project"
@@ -52,13 +52,13 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="title">Tytuł</label>
+                        <label for="title" th:text="#{issue.title}"></label>
                     </div>
                     <div>
                         <input id="title"
                                type="text"
                                th:field="*{title}"
-                               placeholder="Nazwa"
+                               th:placeholder="#{issue.enterTitle}"
                                class="form-control"/>
                     </div>
                 </div>
@@ -66,13 +66,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="content">Opis zgłoszenia</label>
+                        <label for="content" th:text="#{issue.description}"></label>
                     </div>
                     <div>
                         <textarea id="content"
                                   type="text"
                                   th:field="*{content}"
-                                  placeholder="Nazwa"
+                                  th:placeholder="#{issue.description}"
                                   class="form-control">
                         </textarea>
 
@@ -81,7 +81,7 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="type">Typ</label>
+                        <label for="type" th:text="#{issue.type}"></label>
                     </div>
                     <div>
                         <select id="type"
@@ -102,7 +102,7 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="priority">Priorytet</label>
+                        <label for="priority" th:text="#{issue.priority}"></label>
                     </div>
                     <div>
                         <select id="priority"
@@ -123,7 +123,7 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="project">Status</label>
+                        <label for="project" th:text="#{issue.state}"></label>
                     </div>
                     <div>
                         <select id="state"
@@ -138,7 +138,7 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="assignee">Osoba przydzielona</label>
+                        <label for="assignee" th:text="#{issue.assignee}"></label>
                     </div>
                     <div>
                         <select id="assignee"
@@ -157,8 +157,8 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
-                <a th:href="@{'/issue/preview/' + ${id}}" class="btn btn-secondary" th:text="Anuluj"></a>
+                <button type="submit" class="btn btn-primary" th:text="#{common.save}"></button>
+                <a th:href="@{'/issue/preview/' + ${id}}" class="btn btn-secondary" th:text="#{common.cancel}"></a>
             </div>
         </form>
     </div>

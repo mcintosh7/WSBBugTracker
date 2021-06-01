@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Spring Security Demo</title>
+    <title th:text="#{person.edit}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -22,9 +22,7 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1>
-            Stwórz użytkownika
-        </h1>
+        <h1 th:text="#{person.edit}"></h1>
 
         <form th:action="@{/people/save}" th:object="${person}" method="post">
             <input type="hidden" th:field="*{id}"/>
@@ -32,13 +30,13 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="username">Login</label>
+                        <label for="username" th:text="#{person.name}"></label>
                     </div>
                     <div>
                         <input id="username"
                                type="text"
                                th:field="*{username}"
-                               placeholder="Login użytkownika"
+                               th:placeholder="#{person.name}"
                                th:class="'form-control ' + ${#fields.hasErrors('username') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -49,13 +47,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="name">Imię i nazwisko</label>
+                        <label for="name" th:text="#{person.nameAndSurname}"></label>
                     </div>
                     <div>
                         <input id="name"
                                type="text"
                                th:field="*{name}"
-                               placeholder="Imię i nazwisko"
+                               th:placeholder="#{person.nameAndSurname}"
                                th:class="'form-control ' + ${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -66,13 +64,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="email">Email</label>
+                        <label for="email" th:text="#{person.email}"></label>
                     </div>
                     <div>
                         <input id="email"
                                type="text"
                                th:field="*{email}"
-                               placeholder="Email"
+                               th:placeholder="#{person.email}"
                                th:class="'form-control ' + ${#fields.hasErrors('email') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -84,7 +82,7 @@
             </div>
 
             <div class="mb-3">
-                Uprawnienia:
+                <div th:text="#{person.permission}"></div>
 
                 <p th:each="authority : ${authorities}">
                     <input type="checkbox" name="authorities"
@@ -97,9 +95,9 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
+                <button type="submit" class="btn btn-primary" th:text="#{common.save}"></button>
 
-                <a th:href="@{/people/}" class="btn btn-secondary" th:text="Anuluj"></a>
+                <a th:href="@{/people/}" class="btn btn-secondary" th:text="#{common.cancel}"></a>
             </div>
         </form>
     </div>

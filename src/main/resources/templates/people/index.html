@@ -34,9 +34,9 @@
             <thead>
             <tr>
                 <th th:text="#{person.id}"></th>
-                <th th:text="#{person.nameAndSurname}">Imię i nazwisko</th>
-                <th th:text="#{person.name}">Nazwa użytkownika</th>
-                <th th:text="#{person.email}">Email</th>
+                <th th:text="#{person.nameAndSurname}"></th>
+                <th th:text="#{person.name}"></th>
+                <th th:text="#{person.email}"></th>
             </tr>
             </thead>
             <tr th:each="person : ${people}" th:onclick="'javascript:rowClicked(\'' + ${person.id} + '\');'" style="cursor: pointer">

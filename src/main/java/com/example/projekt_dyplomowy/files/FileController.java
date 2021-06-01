@@ -33,7 +33,7 @@ public class FileController {
                 fileStorageService.store(file);
             } catch (IOException e) {
                 e.printStackTrace();
-                attributes.addFlashAttribute("message", "Nie udało się");
+                attributes.addFlashAttribute("message", "");
             }
         }
         return "file/upload";

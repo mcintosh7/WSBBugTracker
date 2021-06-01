@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
+    <title th:text="#{contact.contact}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-sm-3" th:text="#{contact.titlePage}"></div>
+                            <div class="col-sm-3" th:text="#{contact.title}"></div>
                             <div class="col-sm-9">
                                 <input type="text" name="subject" class="form-control"/>
                             </div>

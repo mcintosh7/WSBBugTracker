@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Stwórz projekt</title>
+    <title th:text="#{issue.create}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -22,9 +22,7 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1>
-            Stwórz nowe zgłoszenie
-        </h1>
+        <h1 class="text-center" th:text="#{issue.create}"></h1>
 
         <form th:action="@{/issue/save}" th:object="${issue}" method="post">
             <input type="hidden" th:field="*{id}"/>
@@ -32,7 +30,7 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="project">Projekt</label>
+                        <label for="project" th:text="#{issue.project}"></label>
                     </div>
                     <div>
                         <select id="project"
@@ -53,14 +51,14 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="type">Typ</label>
+                        <label for="type" th:text="#{issue.type}"></label>
                     </div>
                     <div>
                         <select id="type"
                                 th:field="*{type}"
                                 th:class="'form-control ' + ${#fields.hasErrors('type') ? 'is-invalid' : ''}">
                             <option th:value="${null}"
-                                    th:text="#{type.placeholder}"></option>
+                                    th:text="#{issue.enterType}"></option>
                             <option th:each="type : ${types}"
                                     th:value="${type}"
                                     th:text="${#messages.msg('type.' + type)}"></option>
@@ -74,14 +72,14 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="priority">Priorytet</label>
+                        <label for="priority" th:text="#{issue.priority}"></label>
                     </div>
                     <div>
                         <select id="priority"
                                 th:field="*{priority}"
                                 th:class="'form-control ' + ${#fields.hasErrors('priority') ? 'is-invalid' : ''}">
                             <option th:value="${null}"
-                                    th:text="#{priority.placeholder}"></option>
+                                    th:text="#{issue.enterPriority}"></option>
                             <option th:each="priority : ${priorities}"
                                     th:value="${priority}"
                                     th:text="${#messages.msg('priority.' + priority)}"></option>
@@ -95,13 +93,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="title">Tytuł</label>
+                        <label for="title" th:text="#{issue.title}"></label>
                     </div>
                     <div>
                         <input id="title"
                                type="text"
                                th:field="*{title}"
-                               placeholder="Nazwa"
+                               th:placeholder="#{issue.enterTitle}"
                                th:class="'form-control ' + ${#fields.hasErrors('title') ? 'is-invalid' : ''}"/>
 
                         <small class="text-danger"
@@ -114,13 +112,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="content">Opis zgłoszenia</label>
+                        <label for="content" th:text="#{issue.description}"></label>
                     </div>
                     <div>
                         <textarea id="content"
                                   rows="5" cols="30"
                                   th:field="*{content}"
-                                  placeholder="Opis zgłoszenia"
+                                  th:placeholder="#{issue.description}"
                                   class="form-control">
                         </textarea>
 
@@ -129,7 +127,7 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="assignee">Osoba przydzielona</label>
+                        <label for="assignee" th:text="#{issue.assignee}"></label>
                     </div>
                     <div>
                         <select id="assignee"
@@ -150,8 +148,8 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
-                <a th:href="@{/issue/}" class="btn btn-secondary" th:text="Anuluj"></a>
+                <button type="submit" class="btn btn-primary" th:text="#{common.save}"></button>
+                <a th:href="@{/issue/}" class="btn btn-secondary" th:text="#{common.cancel}"></a>
             </div>
         </form>
     </div>

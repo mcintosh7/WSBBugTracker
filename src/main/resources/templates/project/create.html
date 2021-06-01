@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Stwórz projekt</title>
+    <title th:text="#{project.create}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -30,13 +30,13 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="name">Nazwa</label>
+                        <label for="name" th:text="#{project.name}"></label>
                     </div>
                     <div>
                         <input id="name"
                                type="text"
                                th:field="*{name}"
-                               placeholder="Nazwa"
+                               th:placeholder="#{project.name}"
                                class="form-control"
                                th:class="'form-control ' + ${#fields.hasErrors('name') ? 'is-invalid' : ''}"/>
 
@@ -51,13 +51,13 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="name">Opis projektu</label>
+                        <label for="name" th:text="#{project.description}"></label>
                     </div>
                     <div>
                         <input id="description"
                                type="text"
                                th:field="*{description}"
-                               placeholder="Opis projektu"
+                               th:placeholder="#{project.description}"
                                class="form-control"
                                th:class="'form-control ' + ${#fields.hasErrors('description') ? 'is-invalid' : ''}"/>
 
@@ -71,9 +71,9 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary" th:text="Zapisz"></button>
+                <button type="submit" class="btn btn-primary" th:text="#{common.save}"></button>
 
-                <a th:href="@{/project/}" class="btn btn-secondary" th:text="Anuluj"></a>
+                <a th:href="@{/project/}" class="btn btn-secondary" th:text="#{common.cancel}"></a>
 
             </div>
         </form>

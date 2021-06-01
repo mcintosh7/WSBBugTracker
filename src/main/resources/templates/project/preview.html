@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Stwórz projekt</title>
+    <title th:text="#{project.name}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -30,13 +30,13 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="description">Opis projektu</label>
+                        <label for="description" th:text="#{project.description}"></label>
                     </div>
                     <div>
                         <textarea id="description"
                                   type="text"
                                   th:field="*{description}"
-                                  placeholder="Opis projektu"
+                                  th:placeholder="#{project.description}"
                                   class="form-control"
                                   readonly="readonly">
                         </textarea>
@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="createdDate">Data utworzenia</label>
+                        <label for="createdDate" th:text="#{project.createdDate}"></label>
                     </div>
                     <div>
                         <input id="createdDate"
@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="createdBy">Utworzył</label>
+                        <label for="createdBy" th:text="#{project.createdBy}"></label>
                     </div>
                     <div>
                         <input id="createdBy"
@@ -81,7 +81,7 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="lastModifiedDate">Data ostatniej modyfikacji</label>
+                        <label for="lastModifiedDate" th:text="#{project.lastModifiedDate}"></label>
                     </div>
                     <div>
                         <input id="lastModifiedDate"
@@ -97,7 +97,7 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="LastModifiedBy">Ostatnio zmiodyfikowany przez</label>
+                        <label for="LastModifiedBy" th:text="#{project.lastModifiedBy}"></label>
                     </div>
                     <div>
                         <input id="LastModifiedBy"

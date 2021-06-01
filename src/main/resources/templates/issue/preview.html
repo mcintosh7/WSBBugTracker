@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Stwórz projekt</title>
+    <title th:text="#{issue.title}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -31,13 +31,13 @@
             <div class="row">
                 <div class="mb-3">
                     <div>
-                        <label for="project">Projekt</label>
+                        <label for="project" th:text="#{issue.project}"></label>
                     </div>
                     <div>
                         <input id="project"
                                type="text"
                                th:field="*{project.name}"
-                               placeholder="Nazwa"
+                               th:placeholder="#{issue.project}"
                                class="form-control"
                                readonly="readonly"/>
                     </div>
@@ -45,13 +45,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="content">Opis zgłoszenia</label>
+                        <label for="content" th:text="#{issue.description}">Opis zgłoszenia</label>
                     </div>
                     <div>
                         <textarea id="content"
                                   type="text"
                                   th:field="*{content}"
-                                  placeholder="Nazwa"
+                                  th:placeholder="#{issue.description}"
                                   class="form-control"
                                   readonly="readonly">
                         </textarea>
@@ -61,13 +61,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="state">Status</label>
+                        <label for="state" th:text="#{issue.state}"></label>
                     </div>
                     <div>
                         <input id="state"
                                type="text"
                                th:value="#{${'state.' + issues.state}}"
-                               placeholder="Status"
+                               th:placeholder="#{issue.state}"
                                class="form-control"
                                readonly="readonly"/>
                     </div>
@@ -75,13 +75,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="type">Typ</label>
+                        <label for="type" th:text="#{issue.type}"></label>
                     </div>
                     <div>
                         <input id="type"
                                type="text"
                                th:value="#{${'type.' + issues.type}}"
-                               placeholder="Status"
+                               th:placeholder="#{issue.type}"
                                class="form-control"
                                readonly="readonly"/>
                     </div>
@@ -89,12 +89,12 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="priority">Priorytet</label>
+                        <label for="priority" th:text="#{issue.priority}"></label>
                     </div>
                     <div>
                         <input id="priority"
                                th:value="#{${'priority.' + issues.priority}}"
-                               placeholder="Status"
+                               th:placeholder="#{issue.priority}"
                                class="form-control"
                                readonly="readonly"/>
                     </div>
@@ -102,13 +102,13 @@
 
                 <div class="mb-3">
                     <div>
-                        <label for="assignee">Osoba przydzielona</label>
+                        <label for="assignee" th:text="#{issue.assignee}"></label>
                     </div>
                     <div>
                         <input id="assignee"
                                type="text"
                                th:field="*{assignee.name}"
-                               placeholder="Przypis"
+                               th:placeholder="#{issue.assignee}"
                                class="form-control"
                                readonly="readonly"/>
                     </div>
@@ -116,8 +116,8 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary" th:text="Edytuj"></button>
-                <a th:href="@{/issue/}" class="btn btn-secondary" th:text="Powrót"></a>
+                <button type="submit" class="btn btn-primary" th:text="#{common.edit}"></button>
+                <a th:href="@{/issue/}" class="btn btn-secondary" th:text="#{common.return}"></a>
 
             </div>
         </form>
