@@ -22,9 +22,7 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1>
-            Stwórz nowy projekt
-        </h1>
+        <h1 class="text-center" th:text="#{project.create}"></h1>
 
         <form th:action="@{/project/save}" th:object="${project}" method="post">
             <input type="hidden" th:field="*{id}"/>

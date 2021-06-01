@@ -6,6 +6,7 @@ import com.example.projekt_dyplomowy.projects.Project;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
 @NoArgsConstructor

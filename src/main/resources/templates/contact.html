@@ -26,54 +26,52 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1 class="text-center" th:text="#{contact.title}"></h1>
+        <h1 class="text-center" th:text="#{contact.titlePage}"></h1>
 
         <div>
             <div class="row">
                 <div class="col-sm-6">
                     <img src="/images/bug.jpg" class="img-fluid img-thumbnail text-center" alt="test"/>
                     <div class="mt-md-3">
-                        treść jakaś
+                        test
                     </div>
                 </div>
 
 
                 <div class="col-sm-6">
                     <form class="mt-2" th:action="@{/mails}" method="post" enctype="multipart/form-data">
-                        <h3>
-                            Kontakt
-                        </h3>
+                        <h3 class="text-center" th:text="#{contact.contact}"></h3>
 
                         <div class="row form-group">
-                            <div class="col-sm-3">Podaj twój email</div>
+                            <div class="col-sm-3" th:text="#{contact.yourEmail}"></div>
                             <div class="col-sm-9">
                                 <input type="email" name="sender" class="form-control"/>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-sm-3">Tytuł</div>
+                            <div class="col-sm-3" th:text="#{contact.titlePage}"></div>
                             <div class="col-sm-9">
                                 <input type="text" name="subject" class="form-control"/>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-sm-3">Treść</div>
+                            <div class="col-sm-3" th:text="#{contact.content}"></div>
                             <div class="col-sm-9">
                                 <textarea rows="10" name="content" class="form-control"></textarea>
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-sm-3">Załącznik</div>
+                            <div class="col-sm-3" th:text="#{contact.attachment}"></div>
                             <div class="col-sm-9">
                                 <input type="file" name="attachment" class="form-control-file">
                             </div>
                         </div>
 
                         <div class="text-right">
-                            <button type="submit" class="btn btn-primary">Wyślij</button>
+                            <button type="submit" class="btn btn-primary" th:text="#{common.send}"></button>
                         </div>
 
                     </form>

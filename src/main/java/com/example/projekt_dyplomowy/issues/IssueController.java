@@ -82,9 +82,9 @@ public class IssueController {
             return modelAndView;
         }
 
+        mailService.sendToAssignee(issue);
         issueService.saveIssue(issue);
         modelAndView.setViewName("redirect:/issue/");
-        mailService.sendToAssignee(issue);
         return modelAndView;
     }
 

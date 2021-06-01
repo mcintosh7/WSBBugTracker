@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
+    <title th:text="#{person.title}"></title>
 
     <link rel="shortcut icon" href="/images/favicon.ico">
 
@@ -28,21 +28,15 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1>
-            Użytkownicy
-        </h1>
-
-        <!--<div th:if="${param.}" class="alert alert-danger">
-            <span th:text="#{project.delete}"></span>
-        </div>-->
+        <h1 class="text-center" th:text="#{person.title}"></h1>
 
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Imię i nazwisko</th>
-                <th>Nazwa użytkownika</th>
-                <th>Email</th>
+                <th th:text="#{person.id}"></th>
+                <th th:text="#{person.nameAndSurname}">Imię i nazwisko</th>
+                <th th:text="#{person.name}">Nazwa użytkownika</th>
+                <th th:text="#{person.email}">Email</th>
             </tr>
             </thead>
             <tr th:each="person : ${people}" th:onclick="'javascript:rowClicked(\'' + ${person.id} + '\');'" style="cursor: pointer">
@@ -55,7 +49,7 @@
 
         <div>
             <a th:href="@{'/people/create/'}"
-               th:text="Dodaj"
+               th:text="#{common.add}"
                class="btn btn-primary"></a>
         </div>
     </div>

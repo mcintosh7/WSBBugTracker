@@ -39,7 +39,7 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1 class="text-center" th:text="#{issue.title}"></h1>
+        <h1 class="text-center" th:text="#{issue.titlePage}"></h1>
 
         <form th:action="@{/issue}" th:object="${filter}"
               class="form-inline">
@@ -92,49 +92,41 @@
 
             <button class="btn btn-primary" type="submit" th:text="#{common.search}"></button>
             <a th:href="@{/issue}" th:text="#{common.clear}" class="btn btn-default"></a>
+        </form>
 
 
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nazwa projektu</th>
-                    <th>Status</th>
-                    <th>Tytuł</th>
-                    <th>Typ</th>
-                    <th>Priorytet</th>
-                    <th>Przydzielone do</th>
+                    <th th:text="#{issue.id}"></th>
+                    <th th:text="#{issue.project}"></th>
+                    <th th:text="#{issue.state}"></th>
+                    <th th:text="#{issue.title}"></th>
+                    <th th:text="#{issue.type}"></th>
+                    <th th:text="#{issue.priority}"></th>
+                    <th th:text="#{issue.assignee}"></th>
                     <th></th>
                     <th></th>
                 </tr>
                 </thead>
 
-                <tr th:each="issue : ${issues}" th:onclick="'javascript:rowClicked(\'' + ${issue.id} + '\');'"
-                    style="cursor: pointer">
-                    <td th:text="${issue.id}"></td>
-                    <td th:text="${issue.project.name}"></td>
-                    <td th:text="${#messages.msg('state.' + issue.state)}"></td>
-                    <td th:text="${issue.title}"></td>
-                    <td th:text="${#messages.msg('type.' + issue.type)}"></td>
-                    <td th:text="${#messages.msg('priority.' + issue.priority)}"></td>
-                    <td th:if="${issue.assignee != null}" th:text="${issue.assignee.name}"></td>
-                    <td><a th:href="@{/issue/delete/{id}(id=${issue.id})}">
-                        <span class="iconify" data-icon="bi-trash" data-inline="false"></span>
-                    </a></td>
-                    <td><a th:href="@{/issue/edit/{id}(id=${issue.id})}">
-                        <span class="iconify" data-icon="bi:pencil" data-inline="false"></span>
-                    </a></td>
-                </tr>
-            </table>
-
-
-            <div>
-                <a th:href="@{'/issue/create/'}"
-                   th:text="Dodaj"
-                   class="btn btn-primary"></a>
-            </div>
-
-        </form>
+            <tr th:each="issue : ${issues}" th:onclick="'javascript:rowClicked(\'' + ${issue.id} + '\');'"
+                style="cursor: pointer">
+                <td th:text="${issue.id}"></td>
+                <td th:text="${issue.project.name}"></td>
+                <td th:text="${#messages.msg('state.' + issue.state)}"></td>
+                <td th:text="${issue.title}"></td>
+                <td th:text="${#messages.msg('type.' + issue.type)}"></td>
+                <td th:text="${#messages.msg('priority.' + issue.priority)}"></td>
+                <td th:if="${issue.assignee != null}" th:text="${issue.assignee.name}"></td>
+                <td><a th:href="@{/issue/delete/{id}(id=${issue.id})}">
+                    <span class="iconify" data-icon="bi-trash" data-inline="false"></span>
+                </a></td>
+                <td><a th:href="@{/issue/edit/{id}(id=${issue.id})}">
+                    <span class="iconify" data-icon="bi:pencil" data-inline="false"></span>
+                </a></td>
+            </tr>
+        </table>
 
         <div th:if="${issues.totalPages > 0}" class="row">
             <ul th:each="pageNumber : ${#numbers.sequence(1, issues.totalPages)}" class="pagination">
@@ -144,6 +136,13 @@
                        class="page-link"></a>
                 </li>
             </ul>
+        </div>
+
+
+        <div>
+            <a th:href="@{'/issue/create/'}"
+               th:text="#{common.add}"
+               class="btn btn-primary"></a>
         </div>
     </div>
 </section>
