@@ -8,9 +8,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -19,6 +25,7 @@ import java.util.Set;
 @NoArgsConstructor
 @ValidPasswords
 @UniqueUsername
+@EntityListeners(AuditingEntityListener.class)
 public class Person {
 
     @Id
@@ -48,6 +55,20 @@ public class Person {
     @Column(nullable = false)
     String email;
 
+    @Column(updatable = false)
+    @CreatedBy
+    String createdBy;
+
+    @CreatedDate
+    @Column(updatable = false)
+    Date createdDate;
+
+    @LastModifiedBy
+    String lastModifiedBy;
+
+    @LastModifiedDate
+    Date lastModifiedDate;
+
     public Person(String username, String password, String name, String email) {
         this.username = username;
         this.password = password;
@@ -58,10 +79,6 @@ public class Person {
     @OneToMany(mappedBy = "assignee")
     @JsonIgnoreProperties("assignee")
     Set<Issue> issues;
-
-    @OneToMany(mappedBy = "createdBy")
-    @JsonIgnoreProperties("createdBy")
-    Set<Issue> createdBy;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "person_authorities",

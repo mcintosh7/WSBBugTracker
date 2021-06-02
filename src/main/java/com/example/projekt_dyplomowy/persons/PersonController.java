@@ -59,14 +59,27 @@ public class PersonController {
 
     @GetMapping("/edit/{id}")
     @Secured("ROLE_CREATE_USER")
-    ModelAndView edit(@PathVariable Long id) {
+    ModelAndView edit(@PathVariable ("id") Long id) {
         Person person = personRepository.findById(id).orElse(null);
         if (person == null) {
             return index();
         }
         ModelAndView modelAndView = new ModelAndView("people/edit");
         modelAndView.addObject("authorities", authorityRepository.findAll());
-        modelAndView.addObject(person);
+        modelAndView.addObject("personForm", new PersonForm(person));
+        return modelAndView;
+    }
+
+    @GetMapping("/preview/{id}")
+    @Secured("ROLE_CREATE_USER")
+    ModelAndView preview(@PathVariable ("id") Long id) {
+        Person person = personRepository.findById(id).orElse(null);
+        if (person == null) {
+            return index();
+        }
+        ModelAndView modelAndView = new ModelAndView("people/preview");
+        modelAndView.addObject("authorities", authorityRepository.findAll());
+        modelAndView.addObject("personForm", new PersonForm(person));
         return modelAndView;
     }
 
@@ -74,12 +87,13 @@ public class PersonController {
     @Secured("ROLE_CREATE_USER")
     public String updateUser(@ModelAttribute("id") long id, @Valid PersonForm personForm,
                              BindingResult bindingResult, Model model) {
-        ModelAndView modelAndView = new ModelAndView();
+        /*ModelAndView modelAndView = new ModelAndView();*/
 
         if (bindingResult.hasErrors()) {
             personForm.setId(id);
+            model.addAttribute("authorities", authorityRepository.findAll());
             model.addAttribute("personForm", personForm);
-            return "person/show";
+            return "people/edit";
         }
         personService.savePerson(personForm);
         return "redirect:/people/";

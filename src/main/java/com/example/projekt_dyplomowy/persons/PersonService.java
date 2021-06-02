@@ -57,6 +57,7 @@ public class PersonService {
         person.username = personForm.username;
         person.name = personForm.name;
         person.email = personForm.email;
+        person.authorities = personForm.authorities;
         personRepository.save(person);
     }
 

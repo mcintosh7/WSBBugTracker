@@ -22,9 +22,9 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1 th:text="#{person.edit}"></h1>
+        <h1 class="text-center" th:text="#{person.edit}"></h1>
 
-        <form th:action="@{/people/save}" th:object="${person}" method="post">
+        <form th:action="@{'/people/update/' + ${personForm.id}}" th:object="${personForm}" method="post">
             <input type="hidden" th:field="*{id}"/>
 
             <div class="row">
@@ -61,6 +61,8 @@
                                th:errors="*{name}"></small>
                     </div>
                 </div>
+
+
 
                 <div class="mb-3">
                     <div>
