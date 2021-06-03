@@ -161,6 +161,9 @@
                 <button type="submit" class="btn btn-primary" th:text="#{common.edit}"></button>
 
                 <a th:href="@{/people/}" class="btn btn-secondary" th:text="#{common.return}"></a>
+
+                <a class="btn btn-success"
+                   th:href="@{'/people/editPassword/' + ${personForm.id}}" th:text="#{common.changePassword}"></a>
             </div>
         </form>
     </div>

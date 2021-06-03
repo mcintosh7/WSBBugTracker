@@ -1,11 +1,18 @@
 package com.example.projekt_dyplomowy.persons;
 
+import com.example.projekt_dyplomowy.projects.Project;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.lang.module.Configuration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -45,7 +52,7 @@ public class PersonService {
         savePerson(person);
     }
 
-    protected void savePerson(Person person) {
+    public void savePerson(Person person) {
         String hashedPassword = bCryptPasswordEncoder.encode(person.password);
         person.setPassword(hashedPassword);
 
@@ -64,6 +71,20 @@ public class PersonService {
     public List<Person> findAllUsers() {
         return personRepository.findAll();
     }
-}
+
+    protected void deletePerson(Person person){
+        person.setEnabled(false);
+        personRepository.save(person);
+    }
+
+    public void updatePassword(PasswordForm passwordForm) {
+        Person person = personRepository.findById(passwordForm.id).orElse(null);
+        person.password = bCryptPasswordEncoder.encode(passwordForm.password);
+        personRepository.save(person);
+
+    }
+
+    }
+
 
 

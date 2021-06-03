@@ -27,7 +27,7 @@ public class PersonController {
     @Secured("ROLE_USERS_TAB")
     ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("people/index");
-        modelAndView.addObject("people", personService.findAllUsers());
+        modelAndView.addObject("people", personRepository.findByEnabled(true));
         return modelAndView;
     }
 
@@ -96,6 +96,41 @@ public class PersonController {
             return "people/edit";
         }
         personService.savePerson(personForm);
+        return "redirect:/people/";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    @Secured("ROLE_USERS_TAB")
+    ModelAndView delete(@PathVariable ("id") Long id) {
+        Person person = personRepository.findById(id).orElse(null);
+        if (person == null) {
+            return index();
+        }
+        ModelAndView modelAndView = new ModelAndView("people/create");
+        personService.deletePerson(person);
+        modelAndView.setViewName("redirect:/people/");
+        return modelAndView;
+    }
+
+    @GetMapping("/editPassword/{id}")
+    public String showUpdatePassForm(@PathVariable("id") long id, Model model) {
+        PasswordForm passwordForm = new PasswordForm();
+        passwordForm.setId(id);
+        model.addAttribute("passwordForm", passwordForm);
+        return "people/password";
+    }
+
+    @PostMapping("/updatePassword/{id}")
+    public String updatePassword(@PathVariable("id") long id, @Valid PasswordForm passwordForm,
+                                 BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            passwordForm.setId(id);
+            model.addAttribute("passwordForm", passwordForm);
+            return "people/password";
+        }
+
+        personService.updatePassword(passwordForm);
+        System.out.println("saved");
         return "redirect:/people/";
     }
 

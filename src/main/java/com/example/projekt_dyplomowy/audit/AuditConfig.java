@@ -12,7 +12,6 @@ import java.util.Optional;
 @Configuration
 @EnableJpaAuditing
 public class AuditConfig {
-
     @Bean
     AuditorAware<String> auditorProvider() {
         return () -> Optional.ofNullable(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
