@@ -4,6 +4,7 @@ import com.example.projekt_dyplomowy.comments.Comment;
 import com.example.projekt_dyplomowy.enums.Priority;
 import com.example.projekt_dyplomowy.enums.State;
 import com.example.projekt_dyplomowy.enums.Type;
+import com.example.projekt_dyplomowy.files.FileDB;
 import com.example.projekt_dyplomowy.persons.Person;
 import com.example.projekt_dyplomowy.projects.Project;
 import lombok.Getter;
@@ -96,4 +97,7 @@ public class Issue {
 
     @OneToMany(mappedBy = "issue")
     Set<Comment> comments;
+
+    @OneToMany(mappedBy = "issue")
+    Set<FileDB> fileDB;
 }

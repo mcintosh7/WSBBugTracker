@@ -3,6 +3,8 @@ package com.example.projekt_dyplomowy.issues;
 import com.example.projekt_dyplomowy.enums.Priority;
 import com.example.projekt_dyplomowy.enums.State;
 import com.example.projekt_dyplomowy.enums.Type;
+import com.example.projekt_dyplomowy.files.FileRepository;
+import com.example.projekt_dyplomowy.files.FileStorageService;
 import com.example.projekt_dyplomowy.mails.Mail;
 import com.example.projekt_dyplomowy.mails.MailService;
 import com.example.projekt_dyplomowy.persons.PersonRepository;
@@ -28,14 +30,18 @@ public class IssueController {
     final PersonRepository personRepository;
     final ProjectRepository projectRepository;
     final MailService mailService;
+    final FileStorageService fileStorageService;
+    final FileRepository fileRepository;
 
-    public IssueController(IssueRepository issueRepository, IssueService issueService, PersonService personService, PersonRepository personRepository, ProjectRepository projectRepository, MailService mailService) {
+    public IssueController(IssueRepository issueRepository, IssueService issueService, PersonService personService, PersonRepository personRepository, ProjectRepository projectRepository, MailService mailService, FileStorageService fileStorageService, FileRepository fileRepository) {
         this.issueRepository = issueRepository;
         this.issueService = issueService;
         this.personService = personService;
         this.personRepository = personRepository;
         this.projectRepository = projectRepository;
         this.mailService = mailService;
+        this.fileStorageService = fileStorageService;
+        this.fileRepository = fileRepository;
     }
 
 
@@ -64,6 +70,7 @@ public class IssueController {
         modelAndView.addObject("issues", issue);
         modelAndView.addObject("people", personService.findAllUsers());
         modelAndView.addObject("projects", projectRepository.findByEnabled(true));
+        modelAndView.addObject("files", fileRepository.findAll());
         return modelAndView;
     }
 

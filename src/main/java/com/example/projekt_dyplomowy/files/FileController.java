@@ -36,7 +36,7 @@ public class FileController {
                 attributes.addFlashAttribute("message", "");
             }
         }
-        return "file/upload";
+        return "redirect:/issue/";
     }
 
     @GetMapping("/download/{id}")

@@ -1,5 +1,7 @@
 package com.example.projekt_dyplomowy.files;
 
+import com.example.projekt_dyplomowy.issues.Issue;
+import com.example.projekt_dyplomowy.projects.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,10 @@ public class FileDB {
 
     @Lob
     byte[] data;
+
+    @ManyToOne
+    @JoinColumn(name = "issue_id")
+    Issue issue;
 
     public FileDB(String name, String type, byte[] data) {
         this.name = name;

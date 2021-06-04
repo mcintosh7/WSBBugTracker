@@ -5,6 +5,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class FileStorageService {
@@ -26,4 +27,8 @@ public class FileStorageService {
     public FileDB getFile(Long id) {
         return fileRepository.findById(id).get();
     }
+
+     List<FileDB> findFiles() {
+        return fileRepository.findAll();
+     }
 }
