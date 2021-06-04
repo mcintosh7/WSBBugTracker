@@ -1,7 +1,6 @@
 package com.example.projekt_dyplomowy.files;
 
 import com.example.projekt_dyplomowy.issues.Issue;
-import com.example.projekt_dyplomowy.projects.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,9 +34,16 @@ public class FileDB {
     @JoinColumn(name = "issue_id")
     Issue issue;
 
-    public FileDB(String name, String type, byte[] data) {
-        this.name = name;
-        this.type = type;
-        this.data = data;
+    public FileDB(String fileName, String contentType, byte[] bytes) {
+        this.name = fileName;
+        this.type = contentType;
+        this.data = bytes;
+    }
+
+    public FileDB(String fileName, String contentType, byte[] bytes, Issue issue) {
+        this.name = fileName;
+        this.type = contentType;
+        this.data = bytes;
+        this.issue = issue;
     }
 }

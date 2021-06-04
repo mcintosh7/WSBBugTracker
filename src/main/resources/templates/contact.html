@@ -31,15 +31,6 @@
         <div>
             <div class="row">
                 <div class="col-sm-6">
-                    <img src="/images/bug.jpg" class="img-fluid img-thumbnail text-center" alt="test"/>
-                    <div class="mt-md-3">
-                        Zmień hasło:
-                        <a th:href="@{'/people/update/' + ${passwordForm.id}}" class="btn btn-primary" th:text="#{common.changePassword}" th:object="${passwordForm}" method="post"></a>
-                    </div>
-                </div>
-
-
-                <div class="col-sm-6">
                     <form class="mt-2" th:action="@{/mails}" method="post" enctype="multipart/form-data">
                         <h3 class="text-center" th:text="#{contact.contact}"></h3>
 

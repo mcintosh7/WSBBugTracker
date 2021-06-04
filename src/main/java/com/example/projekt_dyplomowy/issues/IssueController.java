@@ -70,7 +70,7 @@ public class IssueController {
         modelAndView.addObject("issues", issue);
         modelAndView.addObject("people", personService.findAllUsers());
         modelAndView.addObject("projects", projectRepository.findByEnabled(true));
-        modelAndView.addObject("files", fileRepository.findAll());
+        modelAndView.addObject("files", fileStorageService.getFilesByIssue(issue));
         return modelAndView;
     }
 

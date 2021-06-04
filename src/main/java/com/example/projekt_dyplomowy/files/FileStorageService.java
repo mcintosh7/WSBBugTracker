@@ -1,5 +1,6 @@
 package com.example.projekt_dyplomowy.files;
 
+import com.example.projekt_dyplomowy.issues.Issue;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,19 +17,25 @@ public class FileStorageService {
         this.fileRepository = fileRepository;
     }
 
-    public  FileDB store(MultipartFile file) throws IOException {
+    public FileDB store(MultipartFile file, Issue issue) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        String type = file.getContentType();
-        FileDB fileDB = new FileDB(fileName, type, file.getBytes());
+        FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes(), issue);
 
-        return fileRepository.save(fileDB);
+        return fileRepository.save(FileDB);
+    }
+
+    public FileDB  store(MultipartFile file) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
+
+        return fileRepository.save(FileDB);
     }
 
     public FileDB getFile(Long id) {
         return fileRepository.findById(id).get();
     }
 
-     List<FileDB> findFiles() {
-        return fileRepository.findAll();
-     }
+    public List<FileDB> getFilesByIssue(Issue issue) {
+        return fileRepository.findAllByIssue(issue);
+    }
 }
