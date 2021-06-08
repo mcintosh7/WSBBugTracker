@@ -26,8 +26,8 @@ public class FileController {
         this.issueRepository = issueRepository;
     }
 
-    @GetMapping("/add?id={id}")
-    ModelAndView addfile(@PathVariable Long id) {
+    @GetMapping("/add")
+    ModelAndView addfile(@RequestParam Long id) {
         Issue issue = issueRepository.findById(id).orElse(null);
         ModelAndView modelAndView = new ModelAndView("file/upload");
         modelAndView.addObject("issue", issue);
