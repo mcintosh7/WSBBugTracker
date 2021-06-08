@@ -1,6 +1,7 @@
 package com.example.projekt_dyplomowy.files;
 
 import com.example.projekt_dyplomowy.issues.Issue;
+import com.example.projekt_dyplomowy.issues.IssueRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,15 +18,20 @@ public class FileController {
 
     final FileStorageService fileStorageService;
     final FileRepository fileRepository;
+    final IssueRepository issueRepository;
 
-    public FileController(FileStorageService fileStorageService, FileRepository fileRepository) {
+    public FileController(FileStorageService fileStorageService, FileRepository fileRepository, IssueRepository issueRepository) {
         this.fileStorageService = fileStorageService;
         this.fileRepository = fileRepository;
+        this.issueRepository = issueRepository;
     }
 
-    @GetMapping("/add?issueId={id}")
-    ModelAndView addfile(@PathVariable("id") Long id) {
-        return new ModelAndView("file/upload");
+    @GetMapping("/add?id={id}")
+    ModelAndView addfile(@PathVariable Long id) {
+        Issue issue = issueRepository.findById(id).orElse(null);
+        ModelAndView modelAndView = new ModelAndView("file/upload");
+        modelAndView.addObject("issue", issue);
+        return modelAndView;
     }
 
     @PostMapping("/upload")
