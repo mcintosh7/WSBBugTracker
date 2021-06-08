@@ -130,7 +130,7 @@
                             </thead>
 
                             <tr th:each="issue : ${issues}">
-                                <td th:text="${issues.getFileDB()}"></td>
+                                <td th:text= "${issues.getFileDB() != null} ? ${issues.content} : 'brak wyników'"></td>
                                 <td><a th:href="@{/file/download/11}">
                                     <span class="iconify" data-icon="bi:cloud-download" data-inline="false"></span>
                                 </a>
@@ -138,7 +138,7 @@
                             </tr>
                         </table>
                         <div>
-                            <a th:href="@{/file/add}" class="btn btn-secondary" th:text="#{common.file}"></a>
+                            <a th:href="@{'/file/add?issueId=' + ${id}}" class="btn btn-secondary" th:text="#{common.file}"></a>
                         </div>
                     </div>
 

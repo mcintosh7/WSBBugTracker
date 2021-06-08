@@ -20,7 +20,7 @@
 
 <div class="container">
     <form th:action="@{/login}" method="post" class="login-form col-4">
-        <h1 class="text-center" th:text="#{login.label}"/>
+        <h1 class="text-center" th:text="#{login.login}"/>
 
         <div th:if="${param.error}" class="alert alert-danger">
             <span th:text="#{login.error}"></span>

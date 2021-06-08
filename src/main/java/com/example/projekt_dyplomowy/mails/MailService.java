@@ -2,6 +2,7 @@ package com.example.projekt_dyplomowy.mails;
 
 import com.example.projekt_dyplomowy.issues.Issue;
 import com.example.projekt_dyplomowy.persons.Person;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class MailService {
     public Issue issue;
     public Person person;
 
+    @Value("${spring.mail.username}")
+    private String username;
+
     public MailService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
@@ -26,7 +30,7 @@ public class MailService {
             MimeMessage mimeMessage = javaMailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
-            mimeMessageHelper.setTo("testmailwsb@gmail.com");
+            mimeMessageHelper.setTo(username);
             mimeMessageHelper.setSubject(mail.subject);
             mimeMessageHelper.setText("Wiadomość od: " + mail.sender +"\r\n"+ mail.content);
 
