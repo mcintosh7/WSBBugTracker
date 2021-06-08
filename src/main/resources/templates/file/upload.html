@@ -27,10 +27,8 @@
 
         <div class="row">
             <div class="mt-5">
-                <div th:if="${message}">
-                    <h2 th:text="${message}"/>
-                </div>
                 <form method="POST" enctype="multipart/form-data" th:action="@{/file/upload}" >
+                    <input type="hidden" th:field="*{id}"/>
                     <div class="form-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="customFile" name="file">

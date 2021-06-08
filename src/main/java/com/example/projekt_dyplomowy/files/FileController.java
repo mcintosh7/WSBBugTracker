@@ -23,9 +23,9 @@ public class FileController {
         this.fileRepository = fileRepository;
     }
 
-    @GetMapping("/add")
-    public String addfile() {
-        return "file/upload";
+    @GetMapping("/add?issueId={id}")
+    ModelAndView addfile(@PathVariable("id") Long id) {
+        return new ModelAndView("file/upload");
     }
 
     @PostMapping("/upload")
