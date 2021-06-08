@@ -16,7 +16,7 @@
 <body>
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="header">
-        <a class="navbar-brand" th:text="#{application.name}">BugTracker</a>
+        <a class="navbar-brand" th:text="#{application.name}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,16 +24,16 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/issue/}">Zgłoszenia</a>
+                    <a class="nav-link" th:href="@{/issue/}" th:text="#{issue.titlePage}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/project/}">Projekty</a>
+                    <a class="nav-link" th:href="@{/project/}" th:text="#{project.title}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/people/}">Użytkownicy</a>
+                    <a class="nav-link" th:href="@{/people/}" th:text="#{person.title}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/contact}">Moje konto</a>
+                    <a class="nav-link" th:href="@{/contact}" th:text="#{contact.contact}"></a>
                 </li>
                 <li class="nav-item">
                     <form th:action="@{/logout}" method="post" class="form-inline">
@@ -47,7 +47,7 @@
 
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="headerLogin">
-        <a class="navbar-brand" th:text="#{application.name}">BugTracker</a>
+        <a class="navbar-brand" th:text="#{application.name}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="navbarLoginText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/}">O aplikacji</a>
+                    <a class="nav-link" th:href="@{/contact/}" th:text="#{contact.contact}"></a>
                 </li>
             </ul>
             <span class="navbar-text">

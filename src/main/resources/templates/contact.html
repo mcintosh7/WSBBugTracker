@@ -26,13 +26,13 @@
 <body>
 <section class="container">
     <div layout:fragment="content">
-        <h1 class="text-center" th:text="#{contact.titlePage}"></h1>
+        <h1 class="text-center" th:text="#{contact.contact}"></h1>
 
         <div>
             <div class="row">
                 <div class="col-sm-6">
                     <form class="mt-2" th:action="@{/mails}" method="post" enctype="multipart/form-data">
-                        <h3 class="text-center" th:text="#{contact.contact}"></h3>
+
 
                         <div class="row form-group">
                             <div class="col-sm-3" th:text="#{contact.yourEmail}"></div>
@@ -68,6 +68,18 @@
 
                     </form>
                 </div>
+
+                <div class="col-6 text-center">
+                    <h3 class="text-center" th:text="#{contact.author}"></h3>
+                    Arkadiusz Chmal
+                    <div id="contact" class="contact">
+                        <div class="contact-content">
+                            arkadiusz.chmal@gmail.com
+                        </div>
+                        <img src="/images/bug.jpg" class="img-fluid img-thumbnail mt-4" />
+                    </div>
+                </div>
+
             </div>
         </div>
 
