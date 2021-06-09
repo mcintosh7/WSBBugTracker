@@ -131,7 +131,7 @@
 
                             <tr th:each="file : ${files}">
                                 <td th:text= "${file.name != null} ? ${file.name} : 'brak wyników'"></td>
-                                <td><a th:href="@{/file/download/29}">
+                                <td><a th:href="@{'/file/download/' + ${file.id}}">
                                     <span class="iconify" data-icon="bi:cloud-download" data-inline="false"></span>
                                 </a>
                                 </td>
