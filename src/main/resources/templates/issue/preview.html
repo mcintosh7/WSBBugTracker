@@ -129,8 +129,8 @@
                             </tr>
                             </thead>
 
-                            <tr th:each="issue : ${issues}">
-                                <td th:text= "${issues.getFileDB() != null} ? ${issues.content} : 'brak wyników'"></td>
+                            <tr th:each="file : ${files}">
+                                <td th:text= "${file.name != null} ? ${file.name} : 'brak wyników'"></td>
                                 <td><a th:href="@{/file/download/29}">
                                     <span class="iconify" data-icon="bi:cloud-download" data-inline="false"></span>
                                 </a>
