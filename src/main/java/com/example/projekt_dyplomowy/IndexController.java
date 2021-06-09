@@ -21,7 +21,6 @@ public class IndexController {
     }
 
     @GetMapping("/contact")
-    @Secured(("ROLE_USERS_TAB"))
     public String contact() {
         return "contact";
     }
