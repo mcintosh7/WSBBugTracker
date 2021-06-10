@@ -150,7 +150,8 @@
                     <input type="checkbox" name="authorities"
                            th:value="${authority.id}"
                            th:field="*{authorities}"
-                           readonly="readonly"/>
+                           disabled="disabled"
+                           checked="checked"/>
 
                     <label th:text="#{${'authority.' + authority.name}}"
                            th:for="${#ids.prev('authorities')}"></label>
