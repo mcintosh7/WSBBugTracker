@@ -18,13 +18,11 @@ public class MailController {
     }
 
     @GetMapping
-    @Secured("ROLE_USERS_TAB")
     String getForm() {
         return "contact";
     }
 
     @PostMapping
-    @Secured("ROLE_USERS_TAB")
     String sendMail(@ModelAttribute Mail mail) {
         mailService.send(mail);
         return "contact";

@@ -18,6 +18,7 @@ public class IssueFilter {
     Project project;
     Person assignee;
     String title;
+    Boolean enabled = true;
 
     String globalSearch;
 
@@ -45,6 +46,11 @@ public class IssueFilter {
         return hasTitle.or(hasContent);
     }
 
+    private Specification<Issue> isEnabled() {
+        return (issueRoot, query, builder) -> builder.equal(issueRoot.get("enabled"), enabled);
+    }
+
+
     public Specification<Issue> buildQuery() {
         Specification<Issue> spec = Specification.where(null);
 
@@ -67,6 +73,9 @@ public class IssueFilter {
         if (globalSearch != null) {
             spec = spec.and(globalSearching());
         }
+        if (enabled != null) {
+            spec = spec.and(isEnabled());
+        }
 
         return spec;
 
@@ -78,6 +87,7 @@ public class IssueFilter {
                 (project != null ? "&project=" + project.getId() : "") +
                 (assignee != null ? "&assignee=" + assignee.getId() : "") +
                 (title != null ? "&title=" + title : "") +
-                (globalSearch != null ? "&globalSearch=" + globalSearch : "");
+                (globalSearch != null ? "&globalSearch=" + globalSearch : "") +
+                (enabled != null ? "&enabled=" + enabled : "");
     }
 }

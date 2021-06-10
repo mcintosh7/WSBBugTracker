@@ -22,7 +22,7 @@ public class ProjectController {
     }
 
     @GetMapping("/")
-    @Secured("ROLE_USERS_TAB")
+    @Secured("ROLE_MANAGE_PROJECT")
     ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("project/index");
         modelAndView.addObject("projects", projectRepository.findByEnabled(true));
@@ -30,7 +30,7 @@ public class ProjectController {
     }
 
     @GetMapping("/create")
-    @Secured("ROLE_USERS_TAB")
+    @Secured("ROLE_MANAGE_PROJECT")
     ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView("project/create");
         modelAndView.addObject("project", new Project());
@@ -38,7 +38,7 @@ public class ProjectController {
     }
 
     @PostMapping(value = "/save")
-    @Secured("ROLE_USERS_TAB")
+    @Secured("ROLE_MANAGE_PROJECT")
     ModelAndView save(@ModelAttribute @Valid Project project, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -53,7 +53,7 @@ public class ProjectController {
     }
 
     @GetMapping("/edit/{id}")
-    @Secured("ROLE_USERS_TAB")
+    @Secured("ROLE_MANAGE_PROJECT")
     ModelAndView edit(@PathVariable("id") Long id) {
         Project project = projectRepository.findById(id).orElse(null);
         if (project == null) {
@@ -65,7 +65,7 @@ public class ProjectController {
     }
 
     @GetMapping("/preview/{id}")
-    @Secured("ROLE_USERS_TAB")
+    @Secured("ROLE_MANAGE_PROJECT")
     ModelAndView preview(@PathVariable("id") Long id) {
         Project project = projectRepository.findById(id).orElse(null);
         if (project == null) {
@@ -77,7 +77,7 @@ public class ProjectController {
     }
 
     @GetMapping("/delete/{id}")
-    @Secured("ROLE_USERS_TAB")
+    @Secured("ROLE_MANAGE_PROJECT")
     ModelAndView delete(@PathVariable ("id") Long id) {
         Project project = projectRepository.findById(id).orElse(null);
         if (project == null) {

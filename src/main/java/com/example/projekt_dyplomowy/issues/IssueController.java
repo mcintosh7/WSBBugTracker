@@ -46,8 +46,7 @@ public class IssueController {
 
 
     @GetMapping("/create")
-    @Secured("ROLE_USERS_TAB")
-    ModelAndView create() {
+        ModelAndView create() {
         ModelAndView modelAndView = new ModelAndView("issue/create");
         modelAndView.addObject("issue", new Issue());
         modelAndView.addObject("people", personService.findAllUsers());
@@ -59,8 +58,7 @@ public class IssueController {
     }
 
     @GetMapping("/preview/{id}")
-    @Secured("ROLE_USERS_TAB")
-    ModelAndView preview(@PathVariable("id") Long id) {
+        ModelAndView preview(@PathVariable("id") Long id) {
         Issue issue = issueRepository.findById(id).orElse(null);
         ModelAndView modelAndView = new ModelAndView("issue/preview");
         if (issue == null) {
@@ -75,8 +73,7 @@ public class IssueController {
     }
 
     @PostMapping(value = "/save")
-    @Secured("ROLE_USERS_TAB")
-    ModelAndView save(@ModelAttribute @Valid Issue issue, BindingResult bindingResult, Mail mail) {
+        ModelAndView save(@ModelAttribute @Valid Issue issue, BindingResult bindingResult, Mail mail) {
         ModelAndView modelAndView = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
@@ -96,8 +93,7 @@ public class IssueController {
     }
 
     @GetMapping("/edit/{id}")
-    @Secured("ROLE_USERS_TAB")
-    ModelAndView edit(@PathVariable("id") Long id) {
+        ModelAndView edit(@PathVariable("id") Long id) {
         Issue issue = issueRepository.findById(id).orElse(null);
         ModelAndView modelAndView = new ModelAndView("issue/edit");
         if (issue == null) {
@@ -114,7 +110,7 @@ public class IssueController {
     }
 
     @GetMapping("/delete/{id}")
-    @Secured("ROLE_USERS_TAB")
+    @Secured("ROLE_MANAGE_PROJECT")
     ModelAndView delete(@PathVariable("id") Long id) {
         Issue issue = issueRepository.findById(id).orElse(null);
         ModelAndView modelAndView = new ModelAndView("issue/index");
@@ -129,7 +125,6 @@ public class IssueController {
     }
 
     @GetMapping
-    @Secured("ROLE_USERS_TAB")
     ModelAndView index(@ModelAttribute IssueFilter issueFilter, Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("issue/index");
 
