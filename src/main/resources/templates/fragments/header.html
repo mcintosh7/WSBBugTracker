@@ -36,6 +36,9 @@
                     <a class="nav-link" th:href="@{/contact}" th:text="#{contact.contact}"></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" th:href="@{/people/account}" th:text="#{my.account}"></a>
+                </li>
+                <li class="nav-item">
                     <form th:action="@{/logout}" method="post" class="form-inline">
                         <input type="submit" th:value="#{login.logout}" class="btn btn-secondary"/>
                     </form>

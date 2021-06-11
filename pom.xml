@@ -89,6 +89,11 @@
             <artifactId>hibernate-envers</artifactId>
             <version>5.4.31.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>3.0.4.RELEASE</version>
+        </dependency>
 
     </dependencies>
 

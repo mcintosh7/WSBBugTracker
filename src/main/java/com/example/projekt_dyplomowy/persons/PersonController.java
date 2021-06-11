@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/people")
@@ -134,6 +136,13 @@ public class PersonController {
         personService.updatePassword(passwordForm);
         System.out.println("saved");
         return "redirect:/people/";
+    }
+
+    @Secured("ROLE_USERS_TAB")
+    @GetMapping("/account")
+    public String showAccount(Principal principal) {
+        Person person = personRepository.findByUsername(principal.getName());
+        return "redirect:/people/preview/" + person.id;
     }
 
 
