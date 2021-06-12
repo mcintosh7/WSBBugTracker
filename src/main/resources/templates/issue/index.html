@@ -95,20 +95,20 @@
         </form>
 
 
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th th:text="#{issue.id}"></th>
-                    <th th:text="#{issue.project}"></th>
-                    <th th:text="#{issue.state}"></th>
-                    <th th:text="#{issue.title}"></th>
-                    <th th:text="#{issue.type}"></th>
-                    <th th:text="#{issue.priority}"></th>
-                    <th th:text="#{issue.assignee}"></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th th:text="#{issue.id}"></th>
+                <th th:text="#{issue.project}"></th>
+                <th th:text="#{issue.state}"></th>
+                <th th:text="#{issue.title}"></th>
+                <th th:text="#{issue.type}"></th>
+                <th th:text="#{issue.priority}"></th>
+                <th th:text="#{issue.assignee}"></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
 
             <tr th:each="issue : ${issues}" th:onclick="'javascript:rowClicked(\'' + ${issue.id} + '\');'"
                 style="cursor: pointer">
@@ -128,7 +128,7 @@
             </tr>
         </table>
 
-        <div th:if="${issues.totalPages > 0}" class="row">
+        <div th:if="${issues.totalPages > 0}" class="pagination center">
             <ul th:each="pageNumber : ${#numbers.sequence(1, issues.totalPages)}" class="pagination">
                 <li th:class="${'page-item ' + ((pageNumber == issues.number + 1) ? 'active' : '')}">
                     <a th:href="@{'/issue?' + ${filter.toQueryString(pageNumber - 1)}}"
@@ -139,7 +139,7 @@
         </div>
 
 
-        <div>
+        <div class="mb-4">
             <a th:href="@{'/issue/create/'}"
                th:text="#{common.add}"
                class="btn btn-primary"></a>
