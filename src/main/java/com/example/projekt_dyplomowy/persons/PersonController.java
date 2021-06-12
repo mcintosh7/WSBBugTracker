@@ -73,7 +73,6 @@ public class PersonController {
     }
 
     @GetMapping("/preview/{id}")
-    @Secured("ROLE_USERS_TAB")
     ModelAndView preview(@PathVariable ("id") Long id) {
         Person person = personRepository.findById(id).orElse(null);
         if (person == null) {
@@ -114,7 +113,7 @@ public class PersonController {
         return modelAndView;
     }
 
-    @Secured("ROLE_USERS_TAB")
+
     @GetMapping("/editPassword/{id}")
     public String showUpdatePassForm(@PathVariable("id") long id, Model model) {
         PasswordForm passwordForm = new PasswordForm();
@@ -123,7 +122,7 @@ public class PersonController {
         return "people/password";
     }
 
-    @Secured("ROLE_USERS_TAB")
+
     @PostMapping("/updatePassword/{id}")
     public String updatePassword(@PathVariable("id") long id, @Valid PasswordForm passwordForm,
                                  BindingResult result, Model model) {
@@ -138,7 +137,6 @@ public class PersonController {
         return "redirect:/people/";
     }
 
-    @Secured("ROLE_USERS_TAB")
     @GetMapping("/account")
     public String showAccount(Principal principal) {
         Person person = personRepository.findByUsername(principal.getName());
