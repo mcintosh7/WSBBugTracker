@@ -46,7 +46,7 @@ public class FileController {
                 e.printStackTrace();
                 attributes.addFlashAttribute("message", "Could not upload the file: " + file.getOriginalFilename());            }
         }
-        return "redirect:/issue/";
+        return "redirect:/issue/preview/" + issue.getId();
     }
 
     @GetMapping("/download/{id}")

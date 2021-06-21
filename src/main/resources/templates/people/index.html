@@ -54,7 +54,7 @@
                     <td th:text="${person.name}"></td>
                     <td th:text="${person.username}"></td>
                     <td th:text="${person.email}"></td>
-                    <td><a th:href="@{/people/edit/{id}(id=${person.id})}">
+                    <td><a th:href="@{/people/delete/{id}(id=${person.id})}">
                         <span class="iconify" data-icon="bi-trash" data-inline="false"></span>
                     </a></td>
                     <td><a th:href="@{/people/edit/{id}(id=${person.id})}">
